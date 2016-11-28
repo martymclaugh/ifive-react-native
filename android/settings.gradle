@@ -1,0 +1,3 @@
+rootProject.name = 'iFive'
+
+include ':app'
