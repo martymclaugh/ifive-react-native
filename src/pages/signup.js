@@ -18,45 +18,65 @@ export default class Signup extends Component {
     super(props);
 
     this.state = {
-      loaded: true,
       phone_number: '',
-      password: ''
+      password: '',
+      first_name: '',
+      last_name: '',
+      email: '',
+      loaded: true
     };
   }
 
   signup(){
 
     this.setState({
-      laded: false
-    });
-
-    app.createUser({
-      'phone_number': this.state.phone_number,
-      'password': this.state.password
-    }, (error, userData) => {
-      if(error){
-        switch(error.code){
-
-          case "EMAIL_TAKEN":
-            alert("The new user account cannot be created because the Phone Number is already in use.");
-          break;
-          case "INVALID_EMAIL":
-            alert("The specified Phone Number is not a valid Phone Number.");
-          break;
-          default:
-            alert("Error creating user:");
-        }
-      } else {
-        alert('Your account was created!')
-      }
+      loaded: false
+    })
+    fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phone_number: this.state.phone_number,
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        email: this.state.email,
+        password: this.state.password,
+        password_confirmation: this.state.password_confirmation
+      })
+    })
+    // app.createUser({
+    //   'phone_number': this.state.phone_number,
+    //   'password': this.state.password
+    // }, (error, userData) => {
+    //   if(error){
+    //     switch(error.code){
+    //
+    //       case "EMAIL_TAKEN":
+    //         alert("The new user account cannot be created because the Phone Number is already in use.");
+    //       break;
+    //       case "INVALID_EMAIL":
+    //         alert("The specified Phone Number is not a valid Phone Number.");
+    //       break;
+    //       default:
+    //         alert("Error creating user:");
+    //     }
+    //   } else {
+    //     alert('Your account was created!')
+    //   }
 
       this.setState({
         phone_number: '',
         password: '',
+        first_name: '',
+        last_name: '',
+        email: '',
         loaded: true
       });
 
-    });
+    // });
 
   }
 
@@ -79,10 +99,35 @@ export default class Signup extends Component {
           />
           <TextInput
             style={styles.textinput}
+            onChangeText={(text) => this.setState({first_name: text})}
+            value={this.state.first_name}
+            placeholder={"First Name"}
+          />
+          <TextInput
+            style={styles.textinput}
+            onChangeText={(text) => this.setState({last_name: text})}
+            value={this.state.last_name}
+            placeholder={"Last Name"}
+          />
+          <TextInput
+            style={styles.textinput}
+            onChangeText={(text) => this.setState({email: text})}
+            value={this.state.email}
+            placeholder={"Email"}
+          />
+          <TextInput
+            style={styles.textinput}
             onChangeText={(text) => this.setState({password: text})}
             value={this.state.password}
             secureTextEntry={true}
             placeholder={"Password"}
+          />
+          <TextInput
+            style={styles.textinput}
+            onChangeText={(text) => this.setState({password_confirmation: text})}
+            value={this.state.password_confirmation}
+            secureTextEntry={true}
+            placeholder={"Password Confirmation"}
           />
           <Button
             text="Signup"
