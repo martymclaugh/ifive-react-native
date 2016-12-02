@@ -3,13 +3,16 @@ import {
   AppRegistry,
   Text,
   TextInput,
-  View
+  StyleSheet,
+  View,
+  AsyncStorage
 } from 'react-native';
 
 import Button from '../components/button';
 import Header from '../components/header';
 
-import Login from './login';
+import Signup from './signup';
+import Account from './account';
 
 import Firebase from 'firebase';
 
@@ -17,63 +20,22 @@ let app = new Firebase("ifive-b8771.firebaseapp.com");
 
 import styles from '../styles/common-styles.js';
 
-export default class Signup extends Component {
+export default class Login extends Component {
+
   constructor(props){
     super(props);
 
     this.state = {
-      loaded: true,
       email: '',
-      password: ''
-    };
+      password: '',
+      loaded: true
+    }
   }
 
-  signup(){
-
-    this.setState({
-      laded: false
-    });
-
-    app.createUser({
-      'email': this.state.email,
-      'password': this.state.password
-    }, (error, userData) => {
-      if(error){
-        switch(error.code){
-
-          case "EMAIL_TAKEN":
-            alert("The new user account cannot be created because the email is already in use.");
-          break;
-          case "INVALID_EMAIL":
-            alert("The specified email is not a valid email.");
-          break;
-          default:
-            alert("Error creating user:");
-        }
-      } else {
-        alert('Your account was created!')
-      }
-
-      this.setState({
-        email: '',
-        password: '',
-        loaded: true
-      });
-
-    });
-
-  }
-
-  goToLogin(){
-    this.props.navigator.push({
-      component: Login
-    });
-  }
-
-  render() {
+  render(){
     return (
       <View style={styles.container}>
-        <Header text="Signup" loaded={this.state.loaded} />
+        <Header text="Login" loaded={this.state.loaded} />
         <View style={styles.body}>
           <TextInput
             style={styles.textinput}
@@ -88,21 +50,57 @@ export default class Signup extends Component {
             secureTextEntry={true}
             placeholder={"Password"}
           />
+
           <Button
-            text="Signup"
-            onpress={this.signup.bind(this)}
+            text="Login"
+            onpress={this.login.bind(this)}
             button_styles={styles.primary_button}
             button_text_styles={styles.primary_button_text} />
 
           <Button
-            text="Got an Account?"
-            onpress={this.goToLogin.bind(this)}
+            text="New here?"
+            onpress={this.goToSignup.bind(this)}
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
         </View>
       </View>
-    )
+    );
   }
+
+  login(){
+
+    this.setState({
+      loaded: false
+    });
+
+    app.authWithPassword({
+      "email": this.state.email,
+      "password": this.state.password
+    }, (error, user_data) => {
+
+      this.setState({
+        loaded: true
+      });
+
+      if(error){
+        alert('Login Failed. Please try again');
+      }else{
+        AsyncStorage.setItem('user_data', JSON.stringify(user_data));
+        this.props.navigator.push({
+          component: Account
+        });
+      }
+    });
+
+
+  }
+
+  goToSignup(){
+    this.props.navigator.push({
+      component: Signup
+    });
+  }
+
 }
 
-AppRegistry.registerComponent('signup', () => signup);
+AppRegistry.registerComponent('login', () => login);
