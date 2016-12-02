@@ -7,7 +7,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-export default class header extends Component {
+export default class Header extends Component {
 
   render(){
     return (
