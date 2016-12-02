@@ -62,7 +62,7 @@ export default class Login extends Component {
       </View>
     );
   }
-  
+
   login(){
 
     this.setState({
@@ -79,24 +79,36 @@ export default class Login extends Component {
         password: this.state.password
       })
     })
-    .then(alert('Your account has been logged in?'))
+    .then((response) => {
+      this.setState({
+        loaded: true
+      })
+      if (response.status >= 200 && response.status < 300) {
+        alert('You have logged in!')
+        AsyncStorage.setItem('user_data', JSON.stringify(response));
+        const value = AsyncStorage.getItem('user_data');
+        if (value !== null){
+          // We have data!!
+          alert(JSON.stringify(value))
+        }
+        this.props.navigator.push({
+          component: Account
+        });
+      } else {
+        alert('Login Failed. Please try again.')
+        // alert(JSON.stringify(response))
+      }
+    })
     // set session state with ajax call
     // app.authWithPassword({
     //   "email": this.state.email,
     //   "password": this.state.password
     // }, (error, user_data) => {
     //
-    //   this.setState({
-    //     loaded: true
-    //   });
 
     //   if(error){
     //     alert('Login Failed. Please try again');
     //   }else{
-    //     AsyncStorage.setItem('user_data', JSON.stringify(user_data));
-        .then(this.props.navigator.push({
-          component: Account
-        }));
     //   }
     // });
 
