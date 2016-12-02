@@ -27,8 +27,13 @@ export default class Signup extends Component {
     };
   }
 
-  signup(){
+  goToLogin(){
+    this.props.navigator.push({
+      component: Login
+    });
+  }
 
+  signup(){
     this.setState({
       loaded: false
     })
@@ -47,6 +52,8 @@ export default class Signup extends Component {
         password_confirmation: this.state.password_confirmation
       })
     })
+    .then(alert('Your account was created!'))
+    .then(goToLogin)
     // app.createUser({
     //   'phone_number': this.state.phone_number,
     //   'password': this.state.password
@@ -80,11 +87,6 @@ export default class Signup extends Component {
 
   }
 
-  goToLogin(){
-    this.props.navigator.push({
-      component: Login
-    });
-  }
 
   render() {
     return (
