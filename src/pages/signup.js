@@ -11,10 +11,6 @@ import Header from '../components/header';
 
 import Login from './login';
 
-import Firebase from 'firebase';
-
-let app = new Firebase("ifive-b8771.firebaseapp.com");
-
 import styles from '../styles/common-styles.js';
 
 export default class Signup extends Component {
@@ -23,7 +19,7 @@ export default class Signup extends Component {
 
     this.state = {
       loaded: true,
-      email: '',
+      phone_number: '',
       password: ''
     };
   }
@@ -35,17 +31,17 @@ export default class Signup extends Component {
     });
 
     app.createUser({
-      'email': this.state.email,
+      'phone_number': this.state.phone_number,
       'password': this.state.password
     }, (error, userData) => {
       if(error){
         switch(error.code){
 
           case "EMAIL_TAKEN":
-            alert("The new user account cannot be created because the email is already in use.");
+            alert("The new user account cannot be created because the Phone Number is already in use.");
           break;
           case "INVALID_EMAIL":
-            alert("The specified email is not a valid email.");
+            alert("The specified Phone Number is not a valid Phone Number.");
           break;
           default:
             alert("Error creating user:");
@@ -55,7 +51,7 @@ export default class Signup extends Component {
       }
 
       this.setState({
-        email: '',
+        phone_number: '',
         password: '',
         loaded: true
       });
@@ -77,9 +73,9 @@ export default class Signup extends Component {
         <View style={styles.body}>
           <TextInput
             style={styles.textinput}
-            onChangeText={(text) => this.setState({email: text})}
-            value={this.state.email}
-            placeholder={"Email Address"}
+            onChangeText={(text) => this.setState({phone_number: text})}
+            value={this.state.phone_number}
+            placeholder={"Phone Number"}
           />
           <TextInput
             style={styles.textinput}

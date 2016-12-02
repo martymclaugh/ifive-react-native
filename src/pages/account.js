@@ -16,10 +16,6 @@ import Login from './login';
 
 import styles from '../styles/common-styles.js';
 
-import Firebase from 'firebase';
-
-let app = new Firebase("YOUR-FIREBASE-APP-URL");
-
 export default class Account extends Component {
 
   constructor(props){
@@ -74,7 +70,7 @@ export default class Account extends Component {
   logout(){
 
     AsyncStorage.removeItem('user_data').then(() => {
-      app.unauth();
+      // insert ajax call to delete session
       this.props.navigator.push({
         component: Login
       });

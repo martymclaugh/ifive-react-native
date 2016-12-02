@@ -7,47 +7,75 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
+  Navigator,
+  AsyncStorage,
   Text,
   View
 } from 'react-native';
 
-export default class iFive extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
+import Signup from './src/pages/signup';
+import Account from './src/pages/account';
+import Header from './src/components/header';
+import styles from './src/styles/common-styles.js';
+
+class iFive extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      component: null,
+      loaded: false
+    };
   }
+
+  componentWillMount(){
+
+    AsyncStorage.getItem('user_data').then((user_data_json) => {
+
+      let user_data = JSON.parse(user_data_json);
+      let component = {component: Signup};
+      // logic to check if user is already logged in
+      // if(user_data != null){
+      //   app.authWithCustomToken(user_data.token, (error, authData) => {
+      //     if(error){
+      //       this.setState(component);
+          // }else{
+      //       this.setState({component: Account});
+      //     }
+      //   });
+      // }else{
+        this.setState(component);
+      // }
+    });
+
+  }
+
+  render(){
+
+    if(this.state.component){
+      return (
+        <Navigator
+          initialRoute={{component: this.state.component}}
+          configureScene={() => {
+            return Navigator.SceneConfigs.FloatFromRight;
+          }}
+          renderScene={(route, navigator) => {
+            if(route.component){
+              return React.createElement(route.component, { navigator });
+            }
+          }}
+        />
+      );
+    }else{
+      return (
+        <View style={styles.container}>
+          <Header text="React Native Firebase Auth" loaded={this.state.loaded} />
+          <View style={styles.body}></View>
+        </View>
+      );
+    }
+
+  }
+
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
 AppRegistry.registerComponent('iFive', () => iFive);

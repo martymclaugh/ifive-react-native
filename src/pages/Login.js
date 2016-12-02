@@ -14,10 +14,6 @@ import Header from '../components/header';
 import Signup from './signup';
 import Account from './account';
 
-import Firebase from 'firebase';
-
-let app = new Firebase("ifive-b8771.firebaseapp.com");
-
 import styles from '../styles/common-styles.js';
 
 export default class Login extends Component {
@@ -26,7 +22,7 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
-      email: '',
+      phone_number: '',
       password: '',
       loaded: true
     }
@@ -39,9 +35,9 @@ export default class Login extends Component {
         <View style={styles.body}>
           <TextInput
             style={styles.textinput}
-            onChangeText={(text) => this.setState({email: text})}
+            onChangeText={(text) => this.setState({phone_number: text})}
             value={this.state.email}
-            placeholder={"Email Address"}
+            placeholder={"Phone Number"}
           />
           <TextInput
             style={styles.textinput}
@@ -72,25 +68,25 @@ export default class Login extends Component {
     this.setState({
       loaded: false
     });
+    // set session state with ajax call
+    // app.authWithPassword({
+    //   "email": this.state.email,
+    //   "password": this.state.password
+    // }, (error, user_data) => {
+    //
+    //   this.setState({
+    //     loaded: true
+    //   });
 
-    app.authWithPassword({
-      "email": this.state.email,
-      "password": this.state.password
-    }, (error, user_data) => {
-
-      this.setState({
-        loaded: true
-      });
-
-      if(error){
-        alert('Login Failed. Please try again');
-      }else{
-        AsyncStorage.setItem('user_data', JSON.stringify(user_data));
+    //   if(error){
+    //     alert('Login Failed. Please try again');
+    //   }else{
+    //     AsyncStorage.setItem('user_data', JSON.stringify(user_data));
         this.props.navigator.push({
           component: Account
         });
-      }
-    });
+    //   }
+    // });
 
 
   }
