@@ -62,12 +62,24 @@ export default class Login extends Component {
       </View>
     );
   }
-
+  
   login(){
 
     this.setState({
       loaded: false
     });
+    fetch('http://localhost:3000/v1/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phone_number: this.state.phone_number,
+        password: this.state.password
+      })
+    })
+    .then(alert('Your account has been logged in?'))
     // set session state with ajax call
     // app.authWithPassword({
     //   "email": this.state.email,
@@ -82,9 +94,9 @@ export default class Login extends Component {
     //     alert('Login Failed. Please try again');
     //   }else{
     //     AsyncStorage.setItem('user_data', JSON.stringify(user_data));
-        this.props.navigator.push({
+        .then(this.props.navigator.push({
           component: Account
-        });
+        }));
     //   }
     // });
 
