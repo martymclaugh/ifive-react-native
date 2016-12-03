@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 module.exports = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 15
   },
   body: {
     flex: 9,
