@@ -31,11 +31,7 @@ export default class Signup extends Component {
       component: Login
     });
   }
-  goToVerifyPhone(){
-    this.props.navigator.push({
-      component: VerifyPhone
-    });
-  }
+
   signup(){
     this.setState({
       loaded: false
@@ -55,8 +51,20 @@ export default class Signup extends Component {
         password_confirmation: this.state.password_confirmation
       })
     })
-    .then(alert('Your account was created!'))
-    .then(this.goToVerifyPhone.bind(this))
+    .then((response) => {
+      this.setState({
+        loaded: true
+      })
+      if (response.status >= 200 && response.status < 300) {
+        alert('Account Created!')
+        this.props.navigator.push({
+          component: VerifyPhone
+        });
+      } else {
+        alert('Signup Failed. Please try again.')
+        // alert(JSON.stringify(response))
+      }
+    })
     // app.createUser({
     //   'phone_number': this.state.phone_number,
     //   'password': this.state.password
@@ -142,7 +150,7 @@ export default class Signup extends Component {
 
           <Button
             text="Got an Account?"
-            onpress={this.goToVerifyPhone.bind(this)}
+            onpress={this.goToLogin.bind(this)}
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
         </View>
