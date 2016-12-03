@@ -8,7 +8,7 @@ import {
 
 import Button from '../components/button';
 import Header from '../components/header';
-import VerifyPhone from './VerifyPhone';
+import SendVerification from './SendVerification';
 import Login from './login'
 
 import styles from '../styles/common-styles';
@@ -58,7 +58,7 @@ export default class Signup extends Component {
       if (response.status >= 200 && response.status < 300) {
         alert('Account Created!')
         this.props.navigator.push({
-          component: VerifyPhone
+          component: SendVerification
         });
       } else {
         alert('Signup Failed. Please try again.')
