@@ -19,6 +19,7 @@ export default class VerifyPhone extends Component {
     super(props);
 
     this.state = {
+      phone_number: this.props.phone_number,
       code: '',
       loaded: true
     }
@@ -36,12 +37,12 @@ export default class VerifyPhone extends Component {
           <TextInput
             style={styles.textinput}
             onChangeText={(text) => this.setState({code: text})}
-            value={this.state.phone_number}
+            value={this.state.code}
             placeholder={"Pin Number"}
           />
           <Button
             text="Verify via SMS"
-            onpress={this.login.bind(this)}
+            onpress={alert(this.props.phone_number)}
             button_styles={styles.primary_button}
             button_text_styles={styles.primary_button_text} />
         </View>

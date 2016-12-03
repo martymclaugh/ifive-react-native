@@ -3,6 +3,7 @@ import {
   AppRegistry,
   Text,
   TextInput,
+  AsyncStorage,
   View
 } from 'react-native';
 
@@ -56,6 +57,7 @@ export default class Signup extends Component {
         loaded: true
       })
       if (response.status >= 200 && response.status < 300) {
+        AsyncStorage.setItem('user_data', JSON.stringify(response));
         alert('Account Created!')
         this.props.navigator.push({
           component: SendVerification

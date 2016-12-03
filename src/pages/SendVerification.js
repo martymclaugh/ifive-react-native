@@ -20,6 +20,7 @@ export default class SendVerification extends Component {
 
     this.state = {
       phone_number: '',
+      user_data: AsyncStorage.getItem('user_data'),
       loaded: true
     }
   }
@@ -54,20 +55,21 @@ export default class SendVerification extends Component {
     this.setState({
       loaded: false
     });
-        this.props.navigator.push({
-          component: VerifyPhone
-        });
-    // fetch('http://localhost:3000/v1/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     phone_number: this.state.phone_number,
-    //     password: this.state.password
-    //   })
-    // })
+        // this.props.navigator.push({
+        //   component: VerifyPhone
+        // });
+        alert(this.state.user_data)
+    fetch('http://localhost:3000/phone_numbers', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phone_number: this.state.phone_number,
+        user_data: this.state.user_data
+      })
+    })
     // .then((response) => {
     //   this.setState({
     //     loaded: true
