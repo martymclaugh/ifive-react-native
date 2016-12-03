@@ -9,9 +9,10 @@ import {
 import Button from '../components/button';
 import Header from '../components/header';
 
-import Login from './login';
+import VerifyPhone from './VerifyPhone';
+import Login from './login'
 
-import styles from '../styles/common-styles.js';
+import styles from '../styles/common-styles';
 
 export default class Signup extends Component {
   constructor(props){
@@ -26,10 +27,14 @@ export default class Signup extends Component {
       loaded: true
     };
   }
-
   goToLogin(){
     this.props.navigator.push({
       component: Login
+    });
+  }
+  goToVerifyPhone(){
+    this.props.navigator.push({
+      component: VerifyPhone
     });
   }
 
@@ -53,7 +58,7 @@ export default class Signup extends Component {
       })
     })
     .then(alert('Your account was created!'))
-    .then(goToLogin)
+    .then(goToVerifyPhone)
     // app.createUser({
     //   'phone_number': this.state.phone_number,
     //   'password': this.state.password
