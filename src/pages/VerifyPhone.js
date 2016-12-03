@@ -10,54 +10,41 @@ import {
 
 import Button from '../components/button';
 import Header from '../components/header';
-
-import Signup from './signup';
 import Account from './account';
-
 import styles from '../styles/common-styles.js';
 
-export default class Login extends Component {
+export default class VerifyPhone extends Component {
 
   constructor(props){
     super(props);
 
     this.state = {
-      phone_number: '',
-      password: '',
+      phone_number: this.props.phone_number,
+      code: '',
       loaded: true
     }
   }
-
+  goToLogin(){
+    this.props.navigator.push({
+      component: Login
+    });
+  }
   render(){
     return (
       <View style={styles.container}>
-        <Header text="Login" loaded={this.state.loaded} />
+        <Header text="Enter Pin Number" loaded={this.state.loaded} />
         <View style={styles.body}>
           <TextInput
             style={styles.textinput}
-            onChangeText={(text) => this.setState({phone_number: text})}
-            value={this.state.phone_number}
-            placeholder={"Phone Number"}
+            onChangeText={(text) => this.setState({code: text})}
+            value={this.state.code}
+            placeholder={"Pin Number"}
           />
-          <TextInput
-            style={styles.textinput}
-            onChangeText={(text) => this.setState({password: text})}
-            value={this.state.password}
-            secureTextEntry={true}
-            placeholder={"Password"}
-          />
-
           <Button
-            text="Login"
-            onpress={this.login.bind(this)}
+            text="Verify via SMS"
+            onpress={alert(this.props.phone_number)}
             button_styles={styles.primary_button}
             button_text_styles={styles.primary_button_text} />
-
-          <Button
-            text="New here?"
-            onpress={this.goToSignup.bind(this)}
-            button_styles={styles.transparent_button}
-            button_text_styles={styles.transparent_button_text} />
         </View>
       </View>
     );
@@ -114,13 +101,6 @@ export default class Login extends Component {
 
 
   }
-
-  goToSignup(){
-    this.props.navigator.push({
-      component: Signup
-    });
-  }
-
 }
 
-AppRegistry.registerComponent('login', () => login);
+AppRegistry.registerComponent('VerifyPhone', () => VerifyPhone);

@@ -3,15 +3,16 @@ import {
   AppRegistry,
   Text,
   TextInput,
+  AsyncStorage,
   View
 } from 'react-native';
 
 import Button from '../components/button';
 import Header from '../components/header';
+import SendVerification from './SendVerification';
+import Login from './login'
 
-import Login from './login';
-
-import styles from '../styles/common-styles.js';
+import styles from '../styles/common-styles';
 
 export default class Signup extends Component {
   constructor(props){
@@ -26,7 +27,6 @@ export default class Signup extends Component {
       loaded: true
     };
   }
-
   goToLogin(){
     this.props.navigator.push({
       component: Login
@@ -52,8 +52,21 @@ export default class Signup extends Component {
         password_confirmation: this.state.password_confirmation
       })
     })
-    .then(alert('Your account was created!'))
-    .then(goToLogin)
+    .then((response) => {
+      this.setState({
+        loaded: true
+      })
+      if (response.status >= 200 && response.status < 300) {
+        AsyncStorage.setItem('user_data', JSON.stringify(response));
+        alert('Account Created!')
+        this.props.navigator.push({
+          component: SendVerification
+        });
+      } else {
+        alert('Signup Failed. Please try again.')
+        // alert(JSON.stringify(response))
+      }
+    })
     // app.createUser({
     //   'phone_number': this.state.phone_number,
     //   'password': this.state.password
