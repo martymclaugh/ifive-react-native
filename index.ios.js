@@ -13,9 +13,9 @@ import {
   View
 } from 'react-native';
 
-import Signup from './src/pages/signup';
-import Account from './src/pages/account';
-import Header from './src/components/header';
+import Signup from './src/pages/Signup';
+import Account from './src/pages/Account';
+import Header from './src/components/Header';
 import styles from './src/styles/common-styles.js';
 
 class iFive extends Component {
@@ -69,7 +69,7 @@ class iFive extends Component {
     }else{
       return (
         <View style={styles.container}>
-          <Header text="React Native Firebase Auth" loaded={this.state.loaded} />
+          <Header text="iFive" loaded={this.state.loaded} />
           <View style={styles.body}></View>
         </View>
       );

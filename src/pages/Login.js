@@ -8,11 +8,11 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import Button from '../components/button';
-import Header from '../components/header';
+import Button from '../components/Button';
+import Header from '../components/Header';
 
-import Signup from './signup';
-import Account from './account';
+import Signup from './Signup';
+import Account from './Account';
 
 import styles from '../styles/common-styles.js';
 
@@ -123,4 +123,4 @@ export default class Login extends Component {
 
 }
 
-AppRegistry.registerComponent('login', () => login);
+AppRegistry.registerComponent('Login', () => Login);

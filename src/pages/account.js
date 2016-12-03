@@ -9,10 +9,10 @@ import {
   Image
 } from 'react-native';
 
-import Button from '../components/button';
-import Header from '../components/header';
+import Button from '../components/Button';
+import Header from '../components/Header';
 
-import Login from './login';
+import Login from './Login';
 
 import styles from '../styles/common-styles.js';
 
