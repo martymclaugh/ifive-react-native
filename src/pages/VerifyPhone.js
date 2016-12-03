@@ -101,3 +101,5 @@ export default class VerifyPhone extends Component {
 
   }
 }
+
+AppRegistry.registerComponent('VerifyPhone', () => VerifyPhone);
