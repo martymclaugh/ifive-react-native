@@ -61,15 +61,16 @@ export default class Login extends Component {
         loaded: true
       })
       if (response.status >= 200 && response.status < 300) {
-        alert('You have logged in!')
-        alert(response.toString())
-        AsyncStorage.multiSet([
-          ['token', response.access_token],
-          ['userID', response.user.id.toString()]
-        ]);
-        this.props.navigator.push({
-          component: Account
-        });
+        response.json().then((data) => {
+          alert('You have logged in!')
+          AsyncStorage.multiSet([
+            ['token', data.access_token],
+            ['userId', data.id.toString()]
+          ]);
+          this.props.navigator.push({
+            component: Account
+          });
+        })
       } else {
         alert('Login Failed. Please try again.')
         // alert(JSON.stringify(response))
