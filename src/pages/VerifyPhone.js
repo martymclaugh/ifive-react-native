@@ -41,7 +41,7 @@ export default class VerifyPhone extends Component {
             placeholder={"Pin Number"}
           />
           <Button
-            text="Verify via SMS"
+            text="Submit"
             onpress={alert(this.props.phone_number)}
             button_styles={styles.primary_button}
             button_text_styles={styles.primary_button_text} />
