@@ -22,30 +22,50 @@ export default class Account extends Component {
 
     super(props);
     this.state = {
-      loaded: false,
+      first_name: '',
+      last_name: '',
+      phone_number: '',
+      email: '',
+      loaded: false
     }
 
   }
 
+  // getUser = (userId) => {
+  // }
   componentWillMount(){
-  console.log("in component will mount");
+    console.log("in component will mount");
     AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
-      console.log(data[1][1]);
+      console.log(data[0][1]);
+      fetch('http://localhost:3000/users/' + data[1][1], {
+        method: 'GET',
+        headers: {
+          'Authorization': data[0][1],
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then( (response) => {
+        if (response.status >= 200 && response.status < 300) {
+          response.json().then((data) => {
+            this.setState({
+              first_name: data['first_name'],
+              last_name: data['last_name'],
+              email: data['email']
+            })
+          })
+        } else {
+          alert('Login Failed. Please try again.')
+          // alert(JSON.stringify(response))
+        }
+      })
     })
-  }
-  getUser(userId){
-    return fetch('http://localhost:3000/' + userId, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    });
   }
   render(){
 
     return (
       <View style={styles.container}>
+      <Text>{this.state.first_name} {this.state.last_name}</Text>
+      <Text>{this.state.email}</Text>
         {/* <Header text="Account" loaded={this.state.loaded} />
         <View style={styles.body}>
         {
