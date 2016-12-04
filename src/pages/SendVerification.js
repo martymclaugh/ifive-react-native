@@ -20,9 +20,14 @@ export default class SendVerification extends Component {
 
     this.state = {
       phone_number: '',
-      user_data: AsyncStorage.getItem('user_data'),
-      loaded: true
+      userId: '',
+      loaded: false
     }
+  }
+  componentDidMount(){
+    this.setState({
+      loaded: true
+    })
   }
   goToLogin(){
     this.props.navigator.push({
@@ -55,10 +60,12 @@ export default class SendVerification extends Component {
     this.setState({
       loaded: false
     });
-        // this.props.navigator.push({
-        //   component: VerifyPhone
-        // });
-        alert(this.state.user_data)
+    AsyncStorage.getItem('userId').then( (data) => {
+      this.setState({
+        userId: data
+      })
+    })
+    console.log('in function');
     fetch('http://localhost:3000/phone_numbers', {
       method: 'POST',
       headers: {
@@ -67,8 +74,13 @@ export default class SendVerification extends Component {
       },
       body: JSON.stringify({
         phone_number: this.state.phone_number,
-        user_data: this.state.user_data
+        user_id: this.state.userId
       })
+    }).then( () => {
+      alert('Verification PIN sent')
+      this.props.navigator.push({
+        component: VerifyPhone
+      });
     })
     // .then((response) => {
     //   this.setState({
