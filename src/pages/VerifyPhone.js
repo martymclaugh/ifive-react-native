@@ -8,9 +8,9 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import Button from '../components/button';
-import Header from '../components/header';
-import Account from './account';
+import Button from '../components/Button';
+import Header from '../components/Header';
+import Account from './Account';
 import styles from '../styles/common-styles.js';
 
 export default class VerifyPhone extends Component {

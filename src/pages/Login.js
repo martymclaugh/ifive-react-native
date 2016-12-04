@@ -8,11 +8,11 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import Button from '../components/button';
-import Header from '../components/header';
+import Button from '../components/Button';
+import Header from '../components/Header';
 
-import Signup from './signup';
-import Account from './account';
+import Signup from './Signup';
+import Account from './Account';
 
 import styles from '../styles/common-styles.js';
 
@@ -22,10 +22,80 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
+      token: '',
       phone_number: '',
       password: '',
+      badLogin: null,
       loaded: true
     }
+  }
+  submitCredentials(user){
+    if (user.phone_number !== undefined && user.password !== undefined) {
+      this.login({
+        phone_number: user.phone_number,
+        password: user.password
+      }, () => {
+        this.setState({ badLogin: true });
+      });
+    }
+  }
+
+  login(user, callback){
+
+    this.setState({
+      loaded: false
+    });
+    fetch('http://localhost:3000/v1/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        phone_number: this.state.phone_number,
+        password: this.state.password
+      })
+    })
+    .then((response) => {
+      this.setState({
+        loaded: true
+      })
+      if (response.status >= 200 && response.status < 300) {
+        response.json().then((data) => {
+          alert('You have logged in!')
+          AsyncStorage.multiSet([
+            ['token', data.access_token],
+            ['userId', data.id.toString()]
+          ]);
+          this.props.navigator.push({
+            component: Account
+          });
+        })
+      } else {
+        alert('Login Failed. Please try again.')
+        // alert(JSON.stringify(response))
+      }
+    })
+    // set session state with ajax call
+    // app.authWithPassword({
+    //   "email": this.state.email,
+    //   "password": this.state.password
+    // }, (error, user_data) => {
+    //
+
+    //   if(error){
+    //     alert('Login Failed. Please try again');
+    //   }else{
+    //   }
+    // });
+
+
+  }
+
+  goToSignup(){
+    this.props.navigator.push({
+      component: Signup
+    });
   }
 
   render(){
@@ -63,64 +133,6 @@ export default class Login extends Component {
     );
   }
 
-  login(){
-
-    this.setState({
-      loaded: false
-    });
-    fetch('http://localhost:3000/v1/login', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        phone_number: this.state.phone_number,
-        password: this.state.password
-      })
-    })
-    .then((response) => {
-      this.setState({
-        loaded: true
-      })
-      if (response.status >= 200 && response.status < 300) {
-        alert('You have logged in!')
-        AsyncStorage.setItem('user_data', JSON.stringify(response));
-        const value = AsyncStorage.getItem('user_data');
-        if (value !== null){
-          // We have data!!
-          alert(JSON.stringify(value))
-        }
-        this.props.navigator.push({
-          component: Account
-        });
-      } else {
-        alert('Login Failed. Please try again.')
-        // alert(JSON.stringify(response))
-      }
-    })
-    // set session state with ajax call
-    // app.authWithPassword({
-    //   "email": this.state.email,
-    //   "password": this.state.password
-    // }, (error, user_data) => {
-    //
-
-    //   if(error){
-    //     alert('Login Failed. Please try again');
-    //   }else{
-    //   }
-    // });
-
-
-  }
-
-  goToSignup(){
-    this.props.navigator.push({
-      component: Signup
-    });
-  }
-
 }
 
-AppRegistry.registerComponent('login', () => login);
+AppRegistry.registerComponent('Login', () => Login);

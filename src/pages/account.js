@@ -9,10 +9,10 @@ import {
   Image
 } from 'react-native';
 
-import Button from '../components/button';
-import Header from '../components/header';
+import Button from '../components/Button';
+import Header from '../components/Header';
 
-import Login from './login';
+import Login from './Login';
 
 import styles from '../styles/common-styles.js';
 
@@ -22,38 +22,61 @@ export default class Account extends Component {
 
     super(props);
     this.state = {
-      loaded: false,
+      first_name: '',
+      last_name: '',
+      phone_number: '',
+      email: '',
+      loaded: false
     }
 
   }
 
+  // getUser = (userId) => {
+  // }
   componentWillMount(){
-
-    AsyncStorage.getItem('user_data').then((user_data_json) => {
-      let user_data = JSON.parse(user_data_json);
-      this.setState({
-        user: user_data,
-        loaded: true
-      });
-    });
-
+    console.log("in component will mount");
+    AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
+      console.log(data[0][1]);
+      fetch('http://localhost:3000/users/' + data[1][1], {
+        method: 'GET',
+        headers: {
+          'Authorization': data[0][1],
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then( (response) => {
+        if (response.status >= 200 && response.status < 300) {
+          response.json().then((data) => {
+            this.setState({
+              first_name: data['first_name'],
+              last_name: data['last_name'],
+              email: data['email']
+            })
+          })
+        } else {
+          alert('Login Failed. Please try again.')
+          // alert(JSON.stringify(response))
+        }
+      })
+    })
   }
-
   render(){
 
     return (
       <View style={styles.container}>
-        <Header text="Account" loaded={this.state.loaded} />
+      <Text>{this.state.first_name} {this.state.last_name}</Text>
+      <Text>{this.state.email}</Text>
+        {/* <Header text="Account" loaded={this.state.loaded} />
         <View style={styles.body}>
         {
           this.state.user &&
             <View style={styles.body}>
               <View style={page_styles.email_container}>
-                <Text style={page_styles.email_text}>{this.state.user.password.email}</Text>
+                <Text style={page_styles.email_text}>{this.state.user}</Text>
               </View>
               <Image
                 style={styles.image}
-                source={{uri: this.state.user.password.profileImageURL}}
+                source={{uri: this.state.user}}
               />
               <Button
                   text="Logout"
@@ -62,7 +85,7 @@ export default class Account extends Component {
                   button_text_styles={styles.primary_button_text} />
             </View>
         }
-        </View>
+        </View> */}
       </View>
     );
   }

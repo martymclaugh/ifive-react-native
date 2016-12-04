@@ -8,8 +8,8 @@ import {
   AsyncStorage
 } from 'react-native';
 
-import Button from '../components/button';
-import Header from '../components/header';
+import Button from '../components/Button';
+import Header from '../components/Header';
 import VerifyPhone from './VerifyPhone'
 import styles from '../styles/common-styles.js';
 
