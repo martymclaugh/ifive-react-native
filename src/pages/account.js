@@ -28,32 +28,35 @@ export default class Account extends Component {
   }
 
   componentWillMount(){
-
-    AsyncStorage.getItem('user_data').then((user_data_json) => {
-      let user_data = JSON.parse(user_data_json);
-      this.setState({
-        user: user_data,
-        loaded: true
-      });
-    });
-
+  console.log("in component will mount");
+    AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
+      console.log(data[1][1]);
+    })
   }
-
+  getUser(userId){
+    return fetch('http://localhost:3000/' + userId, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+  }
   render(){
 
     return (
       <View style={styles.container}>
-        <Header text="Account" loaded={this.state.loaded} />
+        {/* <Header text="Account" loaded={this.state.loaded} />
         <View style={styles.body}>
         {
           this.state.user &&
             <View style={styles.body}>
               <View style={page_styles.email_container}>
-                <Text style={page_styles.email_text}>{this.state.user.password.email}</Text>
+                <Text style={page_styles.email_text}>{this.state.user}</Text>
               </View>
               <Image
                 style={styles.image}
-                source={{uri: this.state.user.password.profileImageURL}}
+                source={{uri: this.state.user}}
               />
               <Button
                   text="Logout"
@@ -62,7 +65,7 @@ export default class Account extends Component {
                   button_text_styles={styles.primary_button_text} />
             </View>
         }
-        </View>
+        </View> */}
       </View>
     );
   }
