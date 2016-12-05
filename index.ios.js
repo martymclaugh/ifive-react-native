@@ -27,29 +27,18 @@ class iFive extends Component {
       loaded: false
     };
   }
-
   componentWillMount(){
-
-    AsyncStorage.getItem('user_data').then((user_data_json) => {
-
-      let user_data = JSON.parse(user_data_json);
+    AsyncStorage.getItem('token').then((token) => {
+      console.log(token);
       let component = {component: Signup};
       // logic to check if user is already logged in
-      // if(user_data != null){
-      //   app.authWithCustomToken(user_data.token, (error, authData) => {
-      //     if(error){
-      //       this.setState(component);
-          // }else{
-      //       this.setState({component: Account});
-      //     }
-      //   });
-      // }else{
+      if(token != null){
+            this.setState({component: Account});
+      }else{
         this.setState(component);
-      // }
+      }
     });
-
   }
-
   render(){
 
     if(this.state.component){
