@@ -10,7 +10,7 @@ import {
 
 import Button from '../components/Button';
 import Header from '../components/Header';
-
+import SendVerification from './SendVerification'
 import Signup from './Signup';
 import Account from './Account';
 
@@ -62,14 +62,21 @@ export default class Login extends Component {
       })
       if (response.status >= 200 && response.status < 300) {
         response.json().then((data) => {
+          console.log(data);
           alert('You have logged in!')
           AsyncStorage.multiSet([
-            ['token', data.access_token],
-            ['userId', data.id.toString()]
+            ['token', data[0].access_token],
+            ['userId', data[0].id.toString()]
           ]);
-          this.props.navigator.push({
-            component: Account
-          });
+          if(data[1].verified !== true){
+            this.props.navigator.push({
+              component: SendVerification
+            });
+          } else {
+            this.props.navigator.push({
+              component: Account
+            });
+          }
         })
       } else {
         alert('Login Failed. Please try again.')

@@ -11,7 +11,8 @@ import {
 import Button from '../components/Button';
 import Header from '../components/Header';
 import Account from './Account';
-import styles from '../styles/common-styles.js';
+import styles from '../styles/common-styles';
+import SendVerification from './SendVerification'
 
 export default class VerifyPhone extends Component {
 
@@ -19,14 +20,27 @@ export default class VerifyPhone extends Component {
     super(props);
 
     this.state = {
-      phone_number: this.props.phone_number,
+      phone_number: '',
       code: '',
       loaded: true
     }
   }
-  goToLogin(){
+  componentDidMount() {
+    AsyncStorage.getItem('phoneNumber').then( (data) => {
+      console.log(data);
+      this.setState({
+        phone_number: data
+      })
+    })
+  }
+  goToSendVerifcation(){
     this.props.navigator.push({
-      component: Login
+      component: SendVerification
+    });
+  }
+  goToAccount(){
+    this.props.navigator.push({
+      component: Account
     });
   }
   render(){
@@ -41,65 +55,50 @@ export default class VerifyPhone extends Component {
             placeholder={"Pin Number"}
           />
           <Button
-            text="Verify via SMS"
-            onpress={alert(this.props.phone_number)}
+            text="Submit"
+            onpress={this.checkPin.bind(this)}
             button_styles={styles.primary_button}
             button_text_styles={styles.primary_button_text} />
+          <Button
+            text="Send new PIN"
+            onpress={this.goToSendVerifcation.bind(this)}
+            button_styles={styles.transparent_button}
+            button_text_styles={styles.transparent_button_text} />
         </View>
       </View>
     );
   }
-
-  login(){
-
+  checkPin(){
     this.setState({
       loaded: false
     });
-    fetch('http://localhost:3000/v1/login', {
-      method: 'POST',
+    fetch('http://localhost:3000/phone_numbers/' +  this.state.phone_number, {
+      method: 'PUT',
       headers: {
+        'Authorization': ':',
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         phone_number: this.state.phone_number,
-        password: this.state.password
+        code: this.state.code
       })
     })
     .then((response) => {
       this.setState({
         loaded: true
       })
-      if (response.status >= 200 && response.status < 300) {
-        alert('You have logged in!')
-        AsyncStorage.setItem('user_data', JSON.stringify(response));
-        const value = AsyncStorage.getItem('user_data');
-        if (value !== null){
-          // We have data!!
-          alert(JSON.stringify(value))
+      console.log(response);
+      response.json().then( (data) => {
+        if (data.verified === true) {
+          this.props.navigator.push({
+            component: Account
+          })
+        } else {
+          alert('You have entered the wrong PIN')
         }
-        this.props.navigator.push({
-          component: Account
-        });
-      } else {
-        alert('Login Failed. Please try again.')
-        // alert(JSON.stringify(response))
-      }
+      })
     })
-    // set session state with ajax call
-    // app.authWithPassword({
-    //   "email": this.state.email,
-    //   "password": this.state.password
-    // }, (error, user_data) => {
-    //
-
-    //   if(error){
-    //     alert('Login Failed. Please try again');
-    //   }else{
-    //   }
-    // });
-
-
   }
 }
 

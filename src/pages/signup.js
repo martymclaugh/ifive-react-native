@@ -57,7 +57,13 @@ export default class Signup extends Component {
         loaded: true
       })
       if (response.status >= 200 && response.status < 300) {
-        AsyncStorage.setItem('user_data', JSON.stringify(response));
+        response.json().then( (data) => {
+          console.log(data);
+          AsyncStorage.multiSet([
+            ['token', data.access_token],
+            ['userId', data.user_id.toString()]
+          ]);
+        })
         alert('Account Created!')
         this.props.navigator.push({
           component: SendVerification

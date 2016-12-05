@@ -20,14 +20,14 @@ export default class SendVerification extends Component {
 
     this.state = {
       phone_number: '',
-      user_data: AsyncStorage.getItem('user_data'),
-      loaded: true
+      userId: '',
+      loaded: false
     }
   }
-  goToLogin(){
-    this.props.navigator.push({
-      component: Login
-    });
+  componentDidMount(){
+    this.setState({
+      loaded: true
+    })
   }
   render(){
     return (
@@ -55,41 +55,28 @@ export default class SendVerification extends Component {
     this.setState({
       loaded: false
     });
-        // this.props.navigator.push({
-        //   component: VerifyPhone
-        // });
-        alert(this.state.user_data)
-    fetch('http://localhost:3000/phone_numbers', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        phone_number: this.state.phone_number,
-        user_data: this.state.user_data
+    AsyncStorage.setItem('phoneNumber', this.state.phone_number)
+    AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
+      console.log(data);
+      fetch('http://localhost:3000/phone_numbers', {
+        method: 'POST',
+        headers: {
+          'Authorization': data[0][1],
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          phone_number: this.state.phone_number,
+          user_id: data[1][1]
+        })
+      }).then( () => {
+        alert('Verification PIN sent')
+        this.props.navigator.push({
+          component: VerifyPhone
+        });
+        console.log(data);
       })
     })
-    // .then((response) => {
-    //   this.setState({
-    //     loaded: true
-    //   })
-    //   if (response.status >= 200 && response.status < 300) {
-    //     alert('You have logged in!')
-    //     AsyncStorage.setItem('user_data', JSON.stringify(response));
-    //     const value = AsyncStorage.getItem('user_data');
-    //     if (value !== null){
-    //       // We have data!!
-    //       alert(JSON.stringify(value))
-    //     }
-    //     this.props.navigator.push({
-    //       component: Account
-    //     });
-    //   } else {
-    //     alert('Login Failed. Please try again.')
-    //     // alert(JSON.stringify(response))
-    //   }
-    // })
   }
 }
 
