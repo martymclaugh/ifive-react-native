@@ -11,7 +11,6 @@ import Button from '../components/Button';
 import Header from '../components/Header';
 import SendVerification from './SendVerification';
 import Login from './Login'
-
 import styles from '../styles/common-styles';
 
 export default class Signup extends Component {
@@ -58,7 +57,6 @@ export default class Signup extends Component {
       })
       if (response.status >= 200 && response.status < 300) {
         response.json().then( (data) => {
-          console.log(data);
           AsyncStorage.multiSet([
             ['token', data.access_token],
             ['userId', data.user_id.toString()]
@@ -70,40 +68,16 @@ export default class Signup extends Component {
         });
       } else {
         alert('Signup Failed. Please try again.')
-        // alert(JSON.stringify(response))
       }
     })
-    // app.createUser({
-    //   'phone_number': this.state.phone_number,
-    //   'password': this.state.password
-    // }, (error, userData) => {
-    //   if(error){
-    //     switch(error.code){
-    //
-    //       case "EMAIL_TAKEN":
-    //         alert("The new user account cannot be created because the Phone Number is already in use.");
-    //       break;
-    //       case "INVALID_EMAIL":
-    //         alert("The specified Phone Number is not a valid Phone Number.");
-    //       break;
-    //       default:
-    //         alert("Error creating user:");
-    //     }
-    //   } else {
-    //     alert('Your account was created!')
-    //   }
-
-      this.setState({
-        phone_number: '',
-        password: '',
-        first_name: '',
-        last_name: '',
-        email: '',
-        loaded: true
-      });
-
-    // });
-
+    this.setState({
+      phone_number: '',
+      password: '',
+      first_name: '',
+      last_name: '',
+      email: '',
+      loaded: true
+    });
   }
 
 
