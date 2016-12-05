@@ -13,6 +13,7 @@ import Button from '../components/Button';
 import Header from '../components/Header';
 import Login from './Login';
 import styles from '../styles/common-styles.js';
+import Contacts from './Contacts';
 
 export default class Account extends Component {
 
@@ -74,14 +75,22 @@ export default class Account extends Component {
                   onpress={this.logout.bind(this)}
                   button_styles={styles.primary_button}
                   button_text_styles={styles.primary_button_text} />
+              <Button
+                  text="Send High Fives"
+                  onpress={this.goToContacts.bind(this)}
+                  button_styles={styles.transparent_button}
+                  button_text_styles={styles.transparent_button_text} />
             </View>
         </View>
       </View>
     );
   }
-
+  goToContacts(){
+    this.props.navigator.push({
+      component: Contacts
+    });
+  }
   logout(){
-
     AsyncStorage.multiRemove(['userId', 'token', 'phone_number']).then(() => {
       // insert ajax call to delete session
       this.props.navigator.push({
