@@ -31,7 +31,8 @@ export default class Account extends Component {
 
 
   componentWillMount(){
-    AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
+    console.log("here");
+    AsyncStorage.multiGet(['token', 'userId', 'phone_number']).then( (data) => {
       fetch('http://localhost:3000/users/' + data[1][1], {
         method: 'GET',
         headers: {
@@ -43,14 +44,15 @@ export default class Account extends Component {
         if (response.status >= 200 && response.status < 300) {
           response.json().then((data) => {
             this.setState({
-              first_name: data['first_name'],
-              last_name: data['last_name'],
-              email: data['email']
+              loaded: true,
+              first_name: data[0]['first_name'],
+              last_name: data[0]['last_name'],
+              email: data[0]['email'],
+              phone_number: data[1]['phone_number']
             })
           })
         } else {
           alert('Login Failed. Please try again.')
-          // alert(JSON.stringify(response))
         }
       })
     })
@@ -59,35 +61,28 @@ export default class Account extends Component {
 
     return (
       <View style={styles.container}>
-      <Text>{this.state.first_name} {this.state.last_name}</Text>
-      <Text>{this.state.email}</Text>
-        {/* <Header text="Account" loaded={this.state.loaded} />
+      <Header text="Account" loaded={this.state.loaded} />
         <View style={styles.body}>
-        {
-          this.state.user &&
             <View style={styles.body}>
               <View style={page_styles.email_container}>
-                <Text style={page_styles.email_text}>{this.state.user}</Text>
+                <Text>{this.state.first_name} {this.state.last_name}</Text>
+                <Text>{this.state.email}</Text>
+                <Text>{this.state.phone_number}</Text>
               </View>
-              <Image
-                style={styles.image}
-                source={{uri: this.state.user}}
-              />
               <Button
                   text="Logout"
                   onpress={this.logout.bind(this)}
                   button_styles={styles.primary_button}
                   button_text_styles={styles.primary_button_text} />
             </View>
-        }
-        </View> */}
+        </View>
       </View>
     );
   }
 
   logout(){
 
-    AsyncStorage.removeItem('user_data').then(() => {
+    AsyncStorage.multiRemove(['userId', 'token', 'phone_number']).then(() => {
       // insert ajax call to delete session
       this.props.navigator.push({
         component: Login
