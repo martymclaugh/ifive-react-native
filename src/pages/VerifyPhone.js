@@ -26,7 +26,7 @@ export default class VerifyPhone extends Component {
     }
   }
   componentDidMount() {
-    AsyncStorage.getItem('phoneNumber').then( (data) => {
+    AsyncStorage.getItem('phone_number').then( (data) => {
       this.setState({
         phone_number: data
       })

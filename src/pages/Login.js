@@ -64,7 +64,8 @@ export default class Login extends Component {
           alert('You have logged in!')
           AsyncStorage.multiSet([
             ['token', data[0].access_token],
-            ['userId', data[0].id.toString()]
+            ['userId', data[0].id.toString()],
+            ['phone_number', data[1].phone_number]
           ]);
           if(data[1].verified !== true){
             this.props.navigator.push({

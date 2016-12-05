@@ -54,7 +54,7 @@ export default class SendVerification extends Component {
     this.setState({
       loaded: false
     });
-    AsyncStorage.setItem('phoneNumber', this.state.phone_number)
+    AsyncStorage.setItem('phone_number', this.state.phone_number)
     AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
       fetch('http://localhost:3000/phone_numbers', {
         method: 'POST',
