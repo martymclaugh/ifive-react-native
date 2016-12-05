@@ -27,7 +27,6 @@ export default class VerifyPhone extends Component {
   }
   componentDidMount() {
     AsyncStorage.getItem('phoneNumber').then( (data) => {
-      console.log(data);
       this.setState({
         phone_number: data
       })
@@ -88,7 +87,6 @@ export default class VerifyPhone extends Component {
       this.setState({
         loaded: true
       })
-      console.log(response);
       response.json().then( (data) => {
         if (data.verified === true) {
           this.props.navigator.push({

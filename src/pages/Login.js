@@ -13,7 +13,6 @@ import Header from '../components/Header';
 import SendVerification from './SendVerification'
 import Signup from './Signup';
 import Account from './Account';
-
 import styles from '../styles/common-styles.js';
 
 export default class Login extends Component {
@@ -62,7 +61,6 @@ export default class Login extends Component {
       })
       if (response.status >= 200 && response.status < 300) {
         response.json().then((data) => {
-          console.log(data);
           alert('You have logged in!')
           AsyncStorage.multiSet([
             ['token', data[0].access_token],
@@ -80,23 +78,8 @@ export default class Login extends Component {
         })
       } else {
         alert('Login Failed. Please try again.')
-        // alert(JSON.stringify(response))
       }
     })
-    // set session state with ajax call
-    // app.authWithPassword({
-    //   "email": this.state.email,
-    //   "password": this.state.password
-    // }, (error, user_data) => {
-    //
-
-    //   if(error){
-    //     alert('Login Failed. Please try again');
-    //   }else{
-    //   }
-    // });
-
-
   }
 
   goToSignup(){
@@ -123,7 +106,6 @@ export default class Login extends Component {
             secureTextEntry={true}
             placeholder={"Password"}
           />
-
           <Button
             text="Login"
             onpress={this.login.bind(this)}
@@ -139,7 +121,4 @@ export default class Login extends Component {
       </View>
     );
   }
-
 }
-
-AppRegistry.registerComponent('Login', () => Login);

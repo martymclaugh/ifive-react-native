@@ -51,13 +51,11 @@ export default class SendVerification extends Component {
   }
 
   sendVerificationCode(){
-
     this.setState({
       loaded: false
     });
     AsyncStorage.setItem('phoneNumber', this.state.phone_number)
     AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
-      console.log(data);
       fetch('http://localhost:3000/phone_numbers', {
         method: 'POST',
         headers: {
@@ -74,7 +72,6 @@ export default class SendVerification extends Component {
         this.props.navigator.push({
           component: VerifyPhone
         });
-        console.log(data);
       })
     })
   }

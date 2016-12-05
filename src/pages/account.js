@@ -11,9 +11,7 @@ import {
 
 import Button from '../components/Button';
 import Header from '../components/Header';
-
 import Login from './Login';
-
 import styles from '../styles/common-styles.js';
 
 export default class Account extends Component {
@@ -31,12 +29,9 @@ export default class Account extends Component {
 
   }
 
-  // getUser = (userId) => {
-  // }
+
   componentWillMount(){
-    console.log("in component will mount");
     AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
-      console.log(data[0][1]);
       fetch('http://localhost:3000/users/' + data[1][1], {
         method: 'GET',
         headers: {
