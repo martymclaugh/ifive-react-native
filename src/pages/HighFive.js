@@ -88,6 +88,7 @@ export default class HighFive extends Component {
     fetch('http://localhost:3000/users/' + this.state.userId + '/high_fives', {
       method: 'POST',
       headers: {
+        'Authorization': this.state.token,
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
@@ -96,7 +97,13 @@ export default class HighFive extends Component {
         friend_name: this.state.friend_name,
         user_id: this.state.userId
       })
-    }).then()
+    }).then( (data) => data.json().then((data) => {
+      if (data.error){
+        alert(data.error)
+      } else {
+        alert('You sent a High Five!')
+      }
+    }))
   }
   render(){
     return (
