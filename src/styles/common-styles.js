@@ -1,10 +1,52 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+let CIRCLE_RADIUS = 36;
+let Window = Dimensions.get('window');
 
 module.exports = StyleSheet.create({
+  // styles
+  mainContainer: {
+        flex    : 1
+    },
+    dropZone    : {
+        height: 200,
+        marginTop: 50,
+        backgroundColor:'#2c3e50',
+        alignItems: 'center'
+    },
+    text: {
+        marginTop   : 25,
+        marginLeft  : 5,
+        marginRight : 5,
+        textAlign   : 'center',
+        color       : '#fff'
+    },
+    draggableContainer: {
+        position    : 'absolute',
+        top         : Window.height/2 - CIRCLE_RADIUS,
+        left        : Window.width/2 - CIRCLE_RADIUS,
+    },
+    circle      : {
+        backgroundColor     : '#1abc9c',
+        width               : CIRCLE_RADIUS*2,
+        height              : CIRCLE_RADIUS*2,
+        borderRadius        : CIRCLE_RADIUS
+    },
   container: {
     flex: 1,
-    padding: 15
+  },
+  // styles
+  contact_item: {
+    flex: 1,
+    padding: 15,
+    backgroundColor: '#282828',
+    margin: 10,
+    alignItems: 'center',
+
+  },
+  contact_text: {
+    color: '#FFFFFF'
   },
   body: {
     flex: 9,
