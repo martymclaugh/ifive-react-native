@@ -13,7 +13,6 @@ export default class ContactItem extends Component {
   render(){
     return (
       <View key={this.props.phone_number} style={styles.contact_item}>
-
         <Text style={styles.contact_text}>{this.props.first_name} {this.props.last_name}</Text>
         <Button
             text="Send High Five"

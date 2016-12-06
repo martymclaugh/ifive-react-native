@@ -27,7 +27,6 @@ export default class Contacts extends Component {
       loaded: false,
       contacts: []
     }
-
   }
 
 
@@ -54,21 +53,42 @@ export default class Contacts extends Component {
           onpress={this.goToAccount.bind(this)}
           button_styles={styles.transparent_button}
           button_text_styles={styles.transparent_button_text} />
-          {this.state.contacts.map( (contact, i) => {
-            {console.log(contact);}
+          {
+            this.state.contacts.map( (contact, i) => {
             return (
             <ContactItem
-              first_name={contact.familyName}
-              last_name={contact.givenName}
+              first_name={contact.givenName}
+              last_name={contact.familyName}
               phone_number={contact.phoneNumbers[0].number}
-              onpress={this.sendHighFive.bind(this)}/>
-          )
-          })}
+              onpress={() => this.sendHighFive(contact)}/>
+            )
+          })
+        }
         </View>
       </ScrollView>
     );
   }
-  sendHighFive(){
+  sendHighFive(contact){
+    if(contact.phoneNumbers.length > 1){
+      console.log(contact.phoneNumbers);
+      contact.phoneNumbers.map( (number) => {
+        if (number.label === 'mobile'){
+          this.storeNumber(number.number, contact.givenName + ' ' + contact.familyName)
+          this.goToHighFive()
+        }
+      })
+    } else {
+      this.storeNumber(contact.phoneNumbers[0].number, contact.givenName + ' ' + contact.familyName)
+      this.goToHighFive()
+    }
+  }
+  storeNumber(num, name){
+    AsyncStorage.multiSet([
+      ['friend_number', num],
+      ['friend_name', name]
+    ])
+  }
+  goToHighFive(){
     this.props.navigator.push({
       component: HighFive
     })
