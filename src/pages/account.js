@@ -32,7 +32,6 @@ export default class Account extends Component {
 
 
   componentWillMount(){
-    console.log("here");
     AsyncStorage.multiGet(['token', 'userId', 'phone_number']).then( (data) => {
       fetch('http://localhost:3000/users/' + data[1][1], {
         method: 'GET',
@@ -44,12 +43,15 @@ export default class Account extends Component {
       }).then( (response) => {
         if (response.status >= 200 && response.status < 300) {
           response.json().then((data) => {
+            console.log(data);
             this.setState({
               loaded: true,
               first_name: data[0]['first_name'],
               last_name: data[0]['last_name'],
               email: data[0]['email'],
-              phone_number: data[1]['phone_number']
+              phone_number: data[1]['phone_number'],
+              high_fives_given: data[2],
+              high_fives_received: data[3]
             })
           })
         } else {
@@ -69,6 +71,8 @@ export default class Account extends Component {
                 <Text>{this.state.first_name} {this.state.last_name}</Text>
                 <Text>{this.state.email}</Text>
                 <Text>{this.state.phone_number}</Text>
+                <Text>High Fives Given: {this.state.high_fives_given}</Text>
+                <Text>High Fives Received: {this.state.high_fives_received}</Text>
               </View>
               <Button
                   text="Logout"
@@ -92,7 +96,6 @@ export default class Account extends Component {
   }
   logout(){
     AsyncStorage.multiRemove(['userId', 'token', 'phone_number']).then(() => {
-      // insert ajax call to delete session
       this.props.navigator.push({
         component: Login
       });
