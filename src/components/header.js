@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
   },
   header_item: {
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
+    alignItems: 'center',
+    flex: 1
   },
   header_text: {
     color: '#000',
