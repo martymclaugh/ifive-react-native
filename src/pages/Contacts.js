@@ -14,7 +14,8 @@ import ContactItem from '../components/ContactItem'
 import Header from '../components/Header';
 import styles from '../styles/common-styles.js';
 import Account from './Account';
-var Friends = require('react-native-contacts')
+import HighFive from './HighFive'
+var Friends = require('react-native-contacts');
 
 
 export default class Contacts extends Component {
@@ -47,24 +48,31 @@ export default class Contacts extends Component {
     return (
       <ScrollView style={styles.container}>
       <Header text="" loaded={this.state.loaded} />
-      <Button
-        text="< Account"
-        onpress={this.goToAccount.bind(this)}
-        button_styles={styles.transparent_button}
-        button_text_styles={styles.transparent_button_text} />
-        {this.state.contacts.map( (contact, i) => {
-          {console.log(contact);}
-          return (
-          <ContactItem
-            first_name={contact.familyName}
-            last_name={contact.givenName}
-            phone_number={contact.phoneNumbers[0].number}/>
-        )
-        })}
+      <View style={styles.body}>
+        <Button
+          text="< Account"
+          onpress={this.goToAccount.bind(this)}
+          button_styles={styles.transparent_button}
+          button_text_styles={styles.transparent_button_text} />
+          {this.state.contacts.map( (contact, i) => {
+            {console.log(contact);}
+            return (
+            <ContactItem
+              first_name={contact.familyName}
+              last_name={contact.givenName}
+              phone_number={contact.phoneNumbers[0].number}
+              onpress={this.sendHighFive.bind(this)}/>
+          )
+          })}
+        </View>
       </ScrollView>
     );
   }
-
+  sendHighFive(){
+    this.props.navigator.push({
+      component: HighFive
+    })
+  }
   goToAccount(){
     this.props.navigator.push({
       component: Account
