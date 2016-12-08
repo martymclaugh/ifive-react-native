@@ -14,6 +14,7 @@ import SendVerification from './SendVerification'
 import Signup from './Signup';
 import Account from './Account';
 import styles from '../styles/common-styles.js';
+import TextField from 'react-native-md-textinput';
 
 export default class Login extends Component {
 
@@ -94,18 +95,22 @@ export default class Login extends Component {
       <View style={styles.container}>
         <Header text="Login" loaded={this.state.loaded} />
         <View style={styles.body}>
-          <TextInput
+          <TextField
+            label={'Phone Number'}
+            highlightColor={'#6699CC'}
+            dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({phone_number: text})}
             value={this.state.phone_number}
-            placeholder={"Phone Number"}
           />
-          <TextInput
+          <TextField
+            label={'Password'}
+            highlightColor={'#6699CC'}
+            dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({password: text})}
             value={this.state.password}
             secureTextEntry={true}
-            placeholder={"Password"}
           />
           <Button
             text="Login"
