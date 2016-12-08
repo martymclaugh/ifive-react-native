@@ -12,9 +12,6 @@ import Loading from './Loading'
 export default class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      animating: true,
-    };
   }
   render(){
     return (

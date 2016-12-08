@@ -91,6 +91,16 @@ export default class Login extends Component {
   }
 
   render(){
+    if (!this.state.loaded){
+      return (
+        <View style={styles.container}>
+          <Header text="Login"/>
+          <View style={styles.body}>
+          <Loading />
+          </View>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <Header text="Login" loaded={this.state.loaded} />

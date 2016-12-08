@@ -11,6 +11,7 @@ import {
 
 import Button from '../components/Button';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 import Login from './Login';
 import styles from '../styles/common-styles.js';
 import Contacts from './Contacts';
@@ -27,7 +28,6 @@ export default class Account extends Component {
       email: '',
       loaded: false
     }
-
   }
 
 
@@ -61,6 +61,16 @@ export default class Account extends Component {
     })
   }
   render(){
+    if (!this.state.loaded){
+      return (
+        <View style={styles.container}>
+          <Header text="Account"/>
+          <View style={styles.body}>
+          <Loading />
+          </View>
+        </View>
+      )
+    }
 
     return (
       <View style={styles.container}>

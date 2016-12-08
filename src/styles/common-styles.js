@@ -86,9 +86,9 @@ module.exports = StyleSheet.create({
       height: 100
     },
     header: {
-      height: 30,
+      height: 300,
       backgroundColor: PRIMARY_COLOR,
-      paddingTop: 10,
+      paddingTop: 20,
       paddingBottom: 0,
       flexDirection: 'row',
       alignItems: 'center',
@@ -99,11 +99,15 @@ module.exports = StyleSheet.create({
       flex: 1
     },
     loading: {
-      flex: 1,
+      height: Window.height / 1.5,
+      width: Window.width,
+      justifyContent: 'center',
+      backgroundColor: '#F5FCFF',
+      margin: 0
     },
     header_text: {
-        fontFamily: 'GeezaPro-Bold',
-        color: 'white',
-        fontSize: 18
+      fontFamily: 'GeezaPro-Bold',
+      color: 'white',
+      fontSize: 18
     }
 });
