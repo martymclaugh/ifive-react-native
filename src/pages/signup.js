@@ -25,7 +25,7 @@ export default class Signup extends Component {
       first_name: '',
       last_name: '',
       email: '',
-      loaded: true
+      loaded: false
     };
   }
   goToLogin(){
