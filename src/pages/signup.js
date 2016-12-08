@@ -12,6 +12,8 @@ import Header from '../components/Header';
 import SendVerification from './SendVerification';
 import Login from './Login'
 import styles from '../styles/common-styles';
+import TextField from 'react-native-md-textinput';
+
 
 export default class Signup extends Component {
   constructor(props){
@@ -71,7 +73,6 @@ export default class Signup extends Component {
       }
     })
     this.setState({
-      phone_number: '',
       password: '',
       first_name: '',
       last_name: '',
@@ -86,43 +87,47 @@ export default class Signup extends Component {
       <View style={styles.container}>
         <Header text="Signup" loaded={this.state.loaded} />
         <View style={styles.body}>
-          <TextInput
-            style={styles.textinput}
-            onChangeText={(text) => this.setState({phone_number: text})}
-            value={this.state.phone_number}
-            placeholder={"Phone Number"}
-          />
-          <TextInput
+          <TextField
+            label={'First Name'}
+            highlightColor={'#6699CC'}
+            dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({first_name: text})}
             value={this.state.first_name}
-            placeholder={"First Name"}
           />
-          <TextInput
+          <TextField
+            label={'Last Name'}
+            highlightColor={'#6699CC'}
+            dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({last_name: text})}
             value={this.state.last_name}
-            placeholder={"Last Name"}
           />
-          <TextInput
+          <TextField
+            label={'Email'}
+            highlightColor={'#6699CC'}
+            dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({email: text})}
             value={this.state.email}
-            placeholder={"Email"}
           />
-          <TextInput
+          <TextField
+            label={'Password'}
+            highlightColor={'#6699CC'}
+            dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({password: text})}
             value={this.state.password}
             secureTextEntry={true}
-            placeholder={"Password"}
           />
-          <TextInput
+          <TextField
+            label={'Password Confirmation'}
+            highlightColor={'#6699CC'}
+            dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({password_confirmation: text})}
             value={this.state.password_confirmation}
             secureTextEntry={true}
-            placeholder={"Password Confirmation"}
           />
           <Button
             text="Signup"
