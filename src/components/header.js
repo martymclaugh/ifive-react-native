@@ -6,6 +6,8 @@ import {
   View,
   StyleSheet
 } from 'react-native';
+import styles from '../styles/common-styles.js';
+import Loading from './Loading'
 
 export default class Header extends Component {
   constructor(props) {
@@ -20,37 +22,9 @@ export default class Header extends Component {
         <View style={styles.header_item}>
           <Text style={styles.header_text}>{this.props.text}</Text>
         </View>
-        <View style={styles.header_item}>
-        {  !this.props.loaded &&
-            <ActivityIndicator
-            animating={this.state.animating}
-            style={{height: 80}}
-            size="large" />
-        }
-        </View>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  header: {
-    padding: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-    flex: 1
-  },
-  header_item: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    alignItems: 'center',
-    flex: 1
-  },
-  header_text: {
-    color: '#000',
-    fontSize: 18
-  }
-});
 
 AppRegistry.registerComponent('header', () => header);
