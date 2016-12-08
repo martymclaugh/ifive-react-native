@@ -15,6 +15,8 @@ import Signup from './Signup';
 import Account from './Account';
 import styles from '../styles/common-styles.js';
 import TextField from 'react-native-md-textinput';
+import Loading from '../components/Loading';
+
 
 export default class Login extends Component {
 

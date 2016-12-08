@@ -10,11 +10,13 @@ import {
 } from 'react-native';
 
 import Button from '../components/Button';
-import ContactItem from '../components/ContactItem'
+import ContactItem from '../components/ContactItem';
 import Header from '../components/Header';
 import styles from '../styles/common-styles.js';
 import Account from './Account';
-import HighFive from './HighFive'
+import HighFive from './HighFive';
+import Loading from '../components/Loading';
+
 var Friends = require('react-native-contacts');
 
 

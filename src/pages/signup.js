@@ -12,6 +12,7 @@ import Header from '../components/Header';
 import SendVerification from './SendVerification';
 import Login from './Login'
 import styles from '../styles/common-styles';
+import Loading from '../components/Loading';
 import TextField from 'react-native-md-textinput';
 
 
