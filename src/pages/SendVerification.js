@@ -43,7 +43,8 @@ export default class SendVerification extends Component {
             style={styles.textinput}
             onChangeText={(text) => this.setState({phone_number: text})}
             value={this.state.phone_number}
-            placeholder={"Phone Number"}
+            maxLength={10}
+            keyboardType='numeric'
           />
           <Button
             text="Verify via SMS"

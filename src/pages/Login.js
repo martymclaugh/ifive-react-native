@@ -102,6 +102,8 @@ export default class Login extends Component {
             style={styles.textinput}
             onChangeText={(text) => this.setState({phone_number: text})}
             value={this.state.phone_number}
+            maxLength={10}
+            keyboardType='numeric'
           />
           <TextField
             label={'Password'}

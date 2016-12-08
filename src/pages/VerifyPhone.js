@@ -56,6 +56,8 @@ export default class VerifyPhone extends Component {
             style={styles.textinput}
             onChangeText={(text) => this.setState({code: text})}
             value={this.state.code}
+            maxLength={4}
+            keyboardType='numeric'
           />
           <Button
             text="Submit"
