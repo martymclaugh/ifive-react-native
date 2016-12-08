@@ -13,6 +13,8 @@ import Header from '../components/Header';
 import VerifyPhone from './VerifyPhone'
 import styles from '../styles/common-styles.js';
 import TextField from 'react-native-md-textinput';
+import Loading from '../components/Loading';
+
 
 
 export default class SendVerification extends Component {
@@ -32,6 +34,16 @@ export default class SendVerification extends Component {
     })
   }
   render(){
+    if (!this.state.loaded){
+      return (
+        <View style={styles.container}>
+          <Header text="Signup"/>
+          <View style={styles.body}>
+          <Loading />
+          </View>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <Header text="Add Phone Number" loaded={this.state.loaded} />
