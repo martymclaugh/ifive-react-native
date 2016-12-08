@@ -54,9 +54,9 @@ module.exports = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   textinput: {
-    height: 40,
-    borderColor: 'red',
-    borderWidth: 1
+    marginTop: 10,
+    height: 30,
+    width: 300,
   },
   transparent_button: {
     marginTop: 10,

@@ -9,7 +9,8 @@
   "dependencies": {
     "firebase": "^3.6.2",
     "react": "15.4.1",
-    "react-native": "0.38.0"
+    "react-native": "0.38.0",
+    "react-native-md-textinput": "^2.0.4"
   },
   "jest": {
     "preset": "react-native"

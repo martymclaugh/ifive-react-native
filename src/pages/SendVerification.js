@@ -12,6 +12,8 @@ import Button from '../components/Button';
 import Header from '../components/Header';
 import VerifyPhone from './VerifyPhone'
 import styles from '../styles/common-styles.js';
+import TextField from 'react-native-md-textinput';
+
 
 export default class SendVerification extends Component {
 
@@ -34,11 +36,15 @@ export default class SendVerification extends Component {
       <View style={styles.container}>
         <Header text="Add Phone Number" loaded={this.state.loaded} />
         <View style={styles.body}>
-          <TextInput
+          <TextField
+            label={'Phone Number'}
+            highlightColor={'#6699CC'}
+            dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({phone_number: text})}
             value={this.state.phone_number}
-            placeholder={"Phone Number"}
+            maxLength={10}
+            keyboardType='numeric'
           />
           <Button
             text="Verify via SMS"
