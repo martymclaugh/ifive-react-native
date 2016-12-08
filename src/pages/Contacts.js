@@ -43,10 +43,19 @@ export default class Contacts extends Component {
     })
   }
   render(){
-
+    if (!this.state.loaded){
+      return (
+        <View style={styles.container}>
+          <Header text="Contacts"/>
+          <View style={styles.body}>
+          <Loading />
+          </View>
+        </View>
+      )
+    }
     return (
       <ScrollView style={styles.container}>
-      <Header text="" loaded={this.state.loaded} />
+      <Header text="Contacts" loaded={this.state.loaded} />
       <View style={styles.body}>
         <Button
           text="< Account"

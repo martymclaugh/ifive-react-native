@@ -83,6 +83,16 @@ export default class Signup extends Component {
 
 
   render() {
+    if (!this.state.loaded){
+      return (
+        <View style={styles.container}>
+          <Header text="Signup"/>
+          <View style={styles.body}>
+          <Loading />
+          </View>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <Header text="Signup" loaded={this.state.loaded} />
