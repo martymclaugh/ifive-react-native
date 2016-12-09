@@ -13,15 +13,38 @@ let PRIMARY_COLOR = '#007e9e'
 let SECONDARY_COLOR = '#1abc9c'
 
 module.exports = StyleSheet.create({
-    // styles
     mainContainer: {
-      flex: 1
+      flex: 1,
+      backgroundColor: '#F5FCFF',
     },
     dropZone: {
-      height: 200,
-      marginTop: 50,
-      backgroundColor: '#2c3e50',
-      alignItems: 'center'
+      height: 250,
+      paddingTop: 40,
+      backgroundColor: PRIMARY_COLOR,
+      alignItems: 'center',
+    },
+    high_five_header: {
+
+    },
+    high_five_footer: {
+      backgroundColor: SECONDARY_COLOR,
+      position: 'absolute',
+      flexDirection: 'row',
+      flex: 3,
+      left: 0,
+      bottom: 0,
+      right: 0
+    },
+    high_five_text: {
+      flex: 3,
+      fontFamily: 'GeezaPro-Bold',
+      color: 'white',
+      alignSelf: 'flex-end',
+      padding: 15
+    },
+    high_five_back: {
+      alignSelf: 'flex-start',
+      flex: 3
     },
     text: {
       marginTop: 25,
