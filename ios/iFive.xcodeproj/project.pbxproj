@@ -108,7 +108,7 @@
 			remoteGlobalIDString = 1441618E1BD0A79300FA4F59;
 			remoteInfo = RCTContacts;
 		};
-		1C9EB3371DFA6B0000EEB0C9 /* PBXContainerItemProxy */ = {
+		1C9EB2A31DFA652B00EEB0C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 98CADD69AC924D59ADDAD810 /* RNVectorIcons.xcodeproj */;
 			proxyType = 2;
@@ -373,10 +373,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1C9EB3221DFA6B0000EEB0C9 /* Products */ = {
+		1C9EB28E1DFA652B00EEB0C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C9EB3381DFA6B0000EEB0C9 /* libRNVectorIcons.a */,
+				1C9EB2A41DFA652B00EEB0C9 /* libRNVectorIcons.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
