@@ -8,13 +8,24 @@ export default class HighFiveList extends Component {
     return (
       <View style={styles.container}>
           {this.props.list.map( (highFive) => {
-            return(
-              <HighFiveItem
-                key={highFive.id}
-                name={highFive.receiver_name}
-                date={highFive.created_at}
+            console.log(this.props.type);
+            if (this.props.type === 'giver'){
+              return(
+                <HighFiveItem
+                  key={highFive.id}
+                  name={highFive.giver_name}
+                  date={highFive.created_at}
                 />
-            )
+              )
+            } else {
+              return(
+                <HighFiveItem
+                  key={highFive.id}
+                  name={highFive.receiver_name}
+                  date={highFive.created_at}
+                />
+              )
+            }
           })}
       </View>
     );

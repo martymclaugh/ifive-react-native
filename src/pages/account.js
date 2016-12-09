@@ -30,6 +30,8 @@ export default class Account extends Component {
       last_name: '',
       phone_number: '',
       email: '',
+      high_fives_given: [],
+      high_fives_received: [],
       loaded: false
     }
   }

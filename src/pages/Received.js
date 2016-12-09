@@ -15,7 +15,6 @@ import Account from './Account';
 
 export default class Received extends Component {
   constructor(props){
-
     super(props);
     this.state = {
       loaded: false,
@@ -62,7 +61,7 @@ export default class Received extends Component {
           onpress={this.goToAccount.bind(this)}
           button_styles={styles.transparent_button}
           button_text_styles={styles.transparent_button_text} />
-        <HighFiveList list={this.state.given} />
+        <HighFiveList list={this.state.received} type={'giver'}/>
       </ScrollView>
     );
   }
