@@ -11,7 +11,7 @@ export default class HighFiveButton extends Component {
 
   render(){
     return (
-      <View style={this.props.style}>
+      <View>
         <TouchableHighlight underlayColor={"#E8E8E8"} onPress={this.props.onpress}>
           <View>
               <Icon name="hand-paper-o" size={20} color="#0485A9" />
@@ -21,5 +21,3 @@ export default class HighFiveButton extends Component {
     );
   }
 }
-
-AppRegistry.registerComponent('button', () => button);
