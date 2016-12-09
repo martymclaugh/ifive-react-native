@@ -91,7 +91,7 @@ module.exports = StyleSheet.create({
       height: 100
     },
     header: {
-      height: 300,
+      height: 85,
       backgroundColor: PRIMARY_COLOR,
       paddingTop: 20,
       paddingBottom: 0,

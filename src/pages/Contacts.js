@@ -59,11 +59,11 @@ export default class Contacts extends Component {
       <ScrollView style={styles.container}>
         <Header text="Contacts" loaded={this.state.loaded} />
         <View style={styles.body}>
-          <Button
-            text="< Account"
-            onpress={this.goToAccount.bind(this)}
-            button_styles={styles.transparent_button}
-            button_text_styles={styles.transparent_button_text} />
+        <Button
+        text="Account"
+        onpress={this.goToAccount.bind(this)}
+        button_styles={styles.transparent_button}
+        button_text_styles={styles.transparent_button_text} />
             {
               this.state.contacts.map( (contact, i) => {
                 console.log(contact);
