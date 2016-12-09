@@ -98,11 +98,17 @@ export default class Contacts extends Component {
     ])
   }
   goToHighFive(){
+    this.setState({
+      loaded:false
+    })
     this.props.navigator.push({
       component: HighFive
     })
   }
   goToAccount(){
+    this.setState({
+      loaded:false
+    })
     this.props.navigator.push({
       component: Account
     })

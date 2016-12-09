@@ -95,6 +95,9 @@ export default class Login extends Component {
   }
 
   goToSignup(){
+    this.setState({
+      loaded:false
+    })
     this.props.navigator.push({
       component: Signup
     });

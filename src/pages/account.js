@@ -116,6 +116,9 @@ export default class Account extends Component {
     });
   }
   logout(){
+    this.setState({
+      loaded:false
+    })
     AsyncStorage.multiRemove(['userId', 'token', 'phone_number']).then(() => {
       this.props.navigator.push({
         component: Login
