@@ -14,6 +14,8 @@ import Account from './Account';
 import styles from '../styles/common-styles';
 import SendVerification from './SendVerification'
 import TextField from 'react-native-md-textinput';
+import Loading from '../components/Loading';
+
 
 
 export default class VerifyPhone extends Component {
@@ -45,13 +47,23 @@ export default class VerifyPhone extends Component {
     });
   }
   render(){
+    if (!this.state.loaded){
+      return (
+        <View style={styles.container}>
+          <Header text="Signup"/>
+          <View style={styles.body}>
+          <Loading />
+          </View>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <Header text="Enter Pin Number" loaded={this.state.loaded} />
         <View style={styles.body}>
           <TextField
             label={'PIN Number'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({code: text})}

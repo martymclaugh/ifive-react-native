@@ -10,11 +10,13 @@ import {
 } from 'react-native';
 
 import Button from '../components/Button';
-import ContactItem from '../components/ContactItem'
+import ContactItem from '../components/ContactItem';
 import Header from '../components/Header';
 import styles from '../styles/common-styles.js';
 import Account from './Account';
-import HighFive from './HighFive'
+import HighFive from './HighFive';
+import Loading from '../components/Loading';
+
 var Friends = require('react-native-contacts');
 
 
@@ -55,31 +57,35 @@ export default class Contacts extends Component {
     }
     return (
       <ScrollView style={styles.container}>
-      <Header text="Contacts" loaded={this.state.loaded} />
-      <View style={styles.body}>
+        <Header text="Contacts" loaded={this.state.loaded} />
+        <View style={styles.body}>
         <Button
-          text="< Account"
-          onpress={this.goToAccount.bind(this)}
-          button_styles={styles.transparent_button}
-          button_text_styles={styles.transparent_button_text} />
-          {
-            this.state.contacts.map( (contact, i) => {
-            return (
-            <ContactItem
-              first_name={contact.givenName}
-              last_name={contact.familyName}
-              phone_number={contact.phoneNumbers[0].number}
-              onpress={() => this.sendHighFive(contact)}/>
-            )
-          })
-        }
+        text="Account"
+        onpress={this.goToAccount.bind(this)}
+        button_styles={styles.transparent_button}
+        button_text_styles={styles.transparent_button_text} />
+            {
+              this.state.contacts.map( (contact, i) => {
+                console.log(contact);
+                if (contact.phoneNumbers[0] !== undefined){
+                  return (
+                    <ContactItem
+                    key={i}
+                    first_name={contact.givenName}
+                    last_name={contact.familyName}
+                    phone_number={contact.phoneNumbers[0].number}
+                    onpress={() => this.sendHighFive(contact)}/>
+                  )
+                }
+            })
+          }
         </View>
       </ScrollView>
     );
   }
   sendHighFive(contact){
+    console.log('PRESSED');
     if(contact.phoneNumbers.length > 1){
-      console.log(contact.phoneNumbers);
       contact.phoneNumbers.map( (number) => {
         if (number.label === 'mobile'){
           this.storeNumber(number.number, contact.givenName + ' ' + contact.familyName)

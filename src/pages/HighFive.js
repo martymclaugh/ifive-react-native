@@ -10,8 +10,9 @@ import {
 } from 'react-native';
 
 import styles from '../styles/common-styles';
-import Header from '../components/Header'
-import Account from './Account'
+import Header from '../components/Header';
+import Account from './Account';
+import Loading from '../components/Loading';
 
 export default class HighFive extends Component {
   constructor(props){
