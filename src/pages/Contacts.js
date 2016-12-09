@@ -82,20 +82,27 @@ export default class Contacts extends Component {
     if(contact.phoneNumbers.length > 1){
       contact.phoneNumbers.map( (number) => {
         if (number.label === 'mobile'){
-          this.storeNumber(number.number, contact.givenName)
+          this.storeNumber(number.number, contact.givenName, contact.familyName)
           this.goToHighFive()
         }
       })
     } else {
-      this.storeNumber(contact.phoneNumbers[0].number, contact.givenName + ' ' + contact.familyName)
+      this.storeNumber(contact.phoneNumbers[0].number, contact.givenName, contact.familyName)
       this.goToHighFive()
     }
   }
-  storeNumber(num, name){
-    AsyncStorage.multiSet([
-      ['friend_number', num],
-      ['friend_name', name]
-    ])
+  storeNumber(num, givenName, familyName){
+    if (familyName === undefined){
+      AsyncStorage.multiSet([
+        ['friend_number', num],
+        ['friend_name', givenName]
+      ])
+    } else {
+      AsyncStorage.multiSet([
+        ['friend_number', num],
+        ['friend_name', givenName + ' ' + familyName]
+      ])
+    }
   }
   goToHighFive(){
     this.setState({
