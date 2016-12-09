@@ -37,6 +37,9 @@ export default class VerifyPhone extends Component {
     })
   }
   goToSendVerifcation(){
+    this.setState({
+      loaded:false
+    })
     this.props.navigator.push({
       component: SendVerification
     });

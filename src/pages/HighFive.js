@@ -145,6 +145,9 @@ export default class HighFive extends Component {
     );
   }
   goToAccount(){
+    this.setState({
+      loaded:false
+    })
     this.props.navigator.push({
       component: Contacts
     })

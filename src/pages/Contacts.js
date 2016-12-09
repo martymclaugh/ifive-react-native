@@ -17,9 +17,6 @@ import Account from './Account';
 import HighFive from './HighFive';
 import Loading from '../components/Loading';
 
-var Friends = require('react-native-contacts');
-
-
 export default class Contacts extends Component {
 
   constructor(props){
@@ -101,11 +98,17 @@ export default class Contacts extends Component {
     ])
   }
   goToHighFive(){
+    this.setState({
+      loaded:false
+    })
     this.props.navigator.push({
       component: HighFive
     })
   }
   goToAccount(){
+    this.setState({
+      loaded:false
+    })
     this.props.navigator.push({
       component: Account
     })
