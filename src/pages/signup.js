@@ -39,7 +39,7 @@ export default class Signup extends Component {
     this.setState({
       loaded: false
     })
-    fetch('http://localhost:3000/users', {
+    fetch('https://ifive.herokuapp.com/users', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
