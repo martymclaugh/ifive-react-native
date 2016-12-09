@@ -17,7 +17,6 @@ import Loading from '../components/Loading';
 import Login from './Login';
 import styles from '../styles/common-styles.js';
 import Contacts from './Contacts';
-var Friends = require('react-native-contacts');
 
 
 export default class Account extends Component {
@@ -36,13 +35,6 @@ export default class Account extends Component {
 
 
   componentWillMount(){
-    Friends.getAll((err, friends) => {
-      if(err && err.type === 'permissionDenied'){
-        alert('If you want to send High Fives we need your contacts!')
-      } else {
-        AsyncStorage.setItem('contacts', JSON.stringify(friends))
-      }
-    })
     AsyncStorage.multiGet(['token', 'userId', 'phone_number']).then( (data) => {
       fetch('http://localhost:3000/users/' + data[1][1], {
         method: 'GET',
@@ -52,9 +44,9 @@ export default class Account extends Component {
           'Content-Type': 'application/json'
         }
       }).then( (response) => {
+        console.log(response);
         if (response.status >= 200 && response.status < 300) {
           response.json().then((data) => {
-            console.log(data);
             this.setState({
               loaded: true,
               first_name: data[0]['first_name'],
@@ -66,6 +58,7 @@ export default class Account extends Component {
             })
           })
         } else {
+          console.log(response.status);
           alert('Login Failed. Please try again.')
         }
       })
@@ -115,6 +108,9 @@ export default class Account extends Component {
     );
   }
   goToContacts(){
+    this.setState({
+      loaded:false
+    })
     this.props.navigator.push({
       component: Contacts
     });

@@ -17,9 +17,6 @@ import Account from './Account';
 import HighFive from './HighFive';
 import Loading from '../components/Loading';
 
-var Friends = require('react-native-contacts');
-
-
 export default class Contacts extends Component {
 
   constructor(props){

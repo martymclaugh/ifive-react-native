@@ -16,6 +16,7 @@ import Account from './Account';
 import styles from '../styles/common-styles.js';
 import TextField from 'react-native-md-textinput';
 import Loading from '../components/Loading';
+var Friends = require('react-native-contacts');
 
 
 export default class Login extends Component {
@@ -69,7 +70,14 @@ export default class Login extends Component {
             ['token', data[0].access_token],
             ['userId', data[0].id.toString()],
             ['phone_number', data[1].phone_number]
-          ]);
+          ])
+          Friends.getAll((err, friends) => {
+            if(err && err.type === 'permissionDenied'){
+              alert('If you want to send High Fives we need your contacts!')
+            } else {
+              AsyncStorage.setItem('contacts', JSON.stringify(friends))
+            }
+          })
           if(data[1].verified !== true){
             this.props.navigator.push({
               component: SendVerification
