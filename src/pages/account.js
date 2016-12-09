@@ -8,6 +8,8 @@ import {
   AsyncStorage,
   Image
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 import Button from '../components/Button';
 import Header from '../components/Header';
@@ -75,27 +77,31 @@ export default class Account extends Component {
     return (
       <View style={styles.container}>
       <Header text="Account" loaded={this.state.loaded} />
-        <View style={styles.body}>
             <View style={styles.body}>
-              <View style={page_styles.email_container}>
-                <Text>{this.state.first_name} {this.state.last_name}</Text>
-                <Text>{this.state.email}</Text>
-                <Text>{this.state.phone_number}</Text>
-                <Text>High Fives Given: {this.state.high_fives_given}</Text>
-                <Text>High Fives Received: {this.state.high_fives_received}</Text>
+              <View style={styles.account_container}>
+                <Text style={styles.account_name}>{this.state.first_name} {this.state.last_name}</Text>
+                <View style={styles.account_stats}>
+                <Text style={styles.account_info}>
+                  <Icon name="hand-paper-o" size={20} color="black" />  Given: {this.state.high_fives_given}
+                  </Text>
+                  <Text style={styles.account_info}>
+                  <Icon name="hand-paper-o" size={20} color="black" />  Received: {this.state.high_fives_received}
+                  </Text>
+                </View>
+                <Text style={styles.account_info}>{this.state.email}</Text>
+                <Text style={styles.account_info}>{this.state.phone_number}</Text>
               </View>
+              <Button
+              text="Send High Fives"
+              onpress={this.goToContacts.bind(this)}
+              button_styles={styles.transparent_button}
+              button_text_styles={styles.transparent_button_text} />
               <Button
                   text="Logout"
                   onpress={this.logout.bind(this)}
                   button_styles={styles.primary_button}
                   button_text_styles={styles.primary_button_text} />
-              <Button
-                  text="Send High Fives"
-                  onpress={this.goToContacts.bind(this)}
-                  button_styles={styles.transparent_button}
-                  button_text_styles={styles.transparent_button_text} />
             </View>
-        </View>
       </View>
     );
   }
@@ -114,12 +120,3 @@ export default class Account extends Component {
   }
 
 }
-
-const page_styles = StyleSheet.create({
-  email_container: {
-    padding: 20
-  },
-  email_text: {
-    fontSize: 18
-  }
-});

@@ -100,10 +100,32 @@ module.exports = StyleSheet.create({
       color: '#0485A9',
       fontSize: 16
     },
+    account_container: {
+      alignItems: 'center',
+      paddingTop: 50
+    },
+    account_name: {
+      fontFamily: 'GeezaPro-Bold',
+      fontSize: 30,
+      padding: 20
+    },
+    account_info: {
+      fontFamily: 'GeezaPro-Bold'
+    },
+    account_stats: {
+      alignItems: 'center',
+      width: Window.width - 100,
+      margin: 20,
+      padding: 0
+    },
+    account_back_button: {
+      alignSelf: 'flex-start'
+    },
     primary_button: {
-      margin: 10,
+      marginTop: 30,
       padding: 15,
-      backgroundColor: '#529ecc'
+      backgroundColor: '#529ecc',
+      borderRadius: 30
     },
     primary_button_text: {
       color: '#FFF',
@@ -141,5 +163,5 @@ module.exports = StyleSheet.create({
     high_five_button: {
       flex: 1,
       justifyContent: 'flex-end'
-    }
+    },
 });
