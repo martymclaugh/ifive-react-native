@@ -13,6 +13,8 @@ import styles from '../styles/common-styles';
 import Header from '../components/Header';
 import Account from './Account';
 import Loading from '../components/Loading';
+import Button from '../components/Button';
+import Contacts from './Contacts'
 
 export default class HighFive extends Component {
   constructor(props){
@@ -68,13 +70,17 @@ export default class HighFive extends Component {
             token: data[3][1],
             loaded: true
           })
-          console.log(this.state);
       } else {
         alert('This person does not have a mobile number')
         this.props.navigator.push({
           component: Account
         })
       }
+    })
+  }
+  componentWillUnmount(){
+    setState({
+      loaded: false
     })
   }
   setDropZoneValues(event){
@@ -107,28 +113,52 @@ export default class HighFive extends Component {
     }))
   }
   render(){
+    if (!this.state.loaded){
+      return (
+        <View style={styles.container}>
+          <Header text={"High Five " + this.state.friend}/>
+          <View style={styles.body}>
+          <Loading />
+          </View>
+        </View>
+      )
+    }
     return (
       <View style={styles.mainContainer}>
+
         <View style={styles.dropZone}>
           <Image
           onLayout={this.setDropZoneValues.bind(this)}
           source={require('../images/receiving_five.png')}/>
         </View>
         {this.renderDraggable()}
+        <View style={styles.high_five_footer}>
+          <Button
+            text="Back"
+            style={styles.high_five_back}
+            onpress={this.goToAccount.bind(this)}
+            button_styles={styles.transparent_button}
+            button_text_styles={styles.transparent_button_text} />
+          <Text style={styles.high_five_text}>Send {this.state.friend_name} a High Five!</Text>
+        </View>
       </View>
     );
   }
-
+  goToAccount(){
+    this.props.navigator.push({
+      component: Contacts
+    })
+  }
   renderDraggable(){
     if (this.state.showDraggable){
       return (
         <View style={styles.draggableContainer}>
-        <Animated.View
+          <Animated.View
                 {...this.panResponder.panHandlers}
                 style={[this.state.pan.getLayout()]}>
                 <Image source={require('../images/sending_five.png')}/>
-            </Animated.View>
-            <Text>Send {this.state.friend_name} a High Five!</Text>
+          </Animated.View>
+
         </View>
       );
     }

@@ -59,14 +59,16 @@ export default class Contacts extends Component {
       <ScrollView style={styles.container}>
         <Header text="Contacts" loaded={this.state.loaded} />
         <View style={styles.body}>
-        <Button
-        text="Account"
-        onpress={this.goToAccount.bind(this)}
-        button_styles={styles.transparent_button}
-        button_text_styles={styles.transparent_button_text} />
+        <View style={styles.account_back_button}>
+          <Button
+            text="Back"
+            onpress={this.goToAccount.bind(this)}
+            button_styles={styles.transparent_button}
+            button_text_styles={styles.transparent_button_text}
+          />
+        </View>
             {
               this.state.contacts.map( (contact, i) => {
-                console.log(contact);
                 if (contact.phoneNumbers[0] !== undefined){
                   return (
                     <ContactItem
@@ -84,11 +86,10 @@ export default class Contacts extends Component {
     );
   }
   sendHighFive(contact){
-    console.log('PRESSED');
     if(contact.phoneNumbers.length > 1){
       contact.phoneNumbers.map( (number) => {
         if (number.label === 'mobile'){
-          this.storeNumber(number.number, contact.givenName + ' ' + contact.familyName)
+          this.storeNumber(number.number, contact.givenName)
           this.goToHighFive()
         }
       })
@@ -111,6 +112,11 @@ export default class Contacts extends Component {
   goToAccount(){
     this.props.navigator.push({
       component: Account
+    })
+  }
+  componentWillUnmount(){
+    this.setState({
+      loaded: false
     })
   }
 
