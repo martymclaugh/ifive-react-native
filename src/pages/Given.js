@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   ActivityIndicator,
   View,
+  ScrollView,
   AsyncStorage
 } from 'react-native';
 import styles from '../styles/common-styles.js';
@@ -27,20 +28,18 @@ export default class Given extends Component {
   }
   render(){
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Header text='Given' />
-        <View style={styles.body}>
           {this.state.given.map( (highFive) => {
-              console.log(this.state);
+              console.log(highFive);
             return(
               <HighFiveItem
                 name={highFive.receiver_name}
-                phoneNumber={highFive.receiver_phone_number}
+                date={highFive.created_at}
                 />
             )
           })}
-        </View>
-      </View>
+      </ScrollView>
     );
   }
 }
