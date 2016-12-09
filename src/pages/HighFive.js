@@ -92,7 +92,7 @@ export default class HighFive extends Component {
     this.setState({
       loaded: false
     })
-    fetch('https://ifive.herokuapp.com/users/' + this.state.userId + '/high_fives', {
+    fetch('http://localhost:3000/users/' + this.state.userId + '/high_fives', {
       method: 'POST',
       headers: {
         'Authorization': this.state.token,
