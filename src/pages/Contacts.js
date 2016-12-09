@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Text,
-  TextInput,
-  StyleSheet,
   View,
   ScrollView,
-  AsyncStorage,
-  Image
+  AsyncStorage
 } from 'react-native';
 
 import Button from '../components/Button';

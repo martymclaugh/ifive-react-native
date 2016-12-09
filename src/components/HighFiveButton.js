@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   TouchableHighlight,
-  Text,
   View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';

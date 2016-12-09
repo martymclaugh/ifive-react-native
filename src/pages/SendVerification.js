@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  Text,
-  TextInput,
-  StyleSheet,
   View,
   AsyncStorage
 } from 'react-native';
@@ -94,5 +90,3 @@ export default class SendVerification extends Component {
     })
   }
 }
-
-AppRegistry.registerComponent('SendVerification', () => SendVerification);
