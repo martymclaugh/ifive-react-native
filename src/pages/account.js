@@ -100,7 +100,7 @@ export default class Account extends Component {
                 <Text style={styles.account_info}>{this.state.phone_number}</Text>
               </View>
               <Button
-                text="Send High Fives"
+                text="Send Some Fives"
                 onpress={this.goToContacts.bind(this)}
                 button_styles={styles.transparent_button}
                 button_text_styles={styles.transparent_button_text} />

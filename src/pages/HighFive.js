@@ -108,7 +108,7 @@ export default class HighFive extends Component {
       if (data.error){
         alert(data.error)
       } else {
-        alert('You sent a High Five!')
+        alert('You sent a Five!')
       }
     }))
   }
@@ -116,7 +116,7 @@ export default class HighFive extends Component {
     if (!this.state.loaded){
       return (
         <View style={styles.container}>
-          <Header text={"High Five " + this.state.friend}/>
+          <Header text={"High Five " + this.state.friend_name}/>
           <View style={styles.body}>
           <Loading />
           </View>
@@ -139,7 +139,7 @@ export default class HighFive extends Component {
             onpress={this.goToAccount.bind(this)}
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
-          <Text style={styles.high_five_text}>Send {this.state.friend_name} a High Five!</Text>
+          <Text style={styles.high_five_text}>Send {this.state.friend_name} a Five!</Text>
         </View>
       </View>
     );

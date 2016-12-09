@@ -69,7 +69,7 @@ export default class Login extends Component {
           ])
           Friends.getAll((err, friends) => {
             if(err && err.type === 'permissionDenied'){
-              alert('If you want to send High Fives we need your contacts!')
+              alert('If you want to send Fives we need your contacts!')
             } else {
               AsyncStorage.setItem('contacts', JSON.stringify(friends))
             }

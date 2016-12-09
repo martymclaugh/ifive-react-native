@@ -40,7 +40,7 @@ module.exports = StyleSheet.create({
       fontFamily: 'GeezaPro-Bold',
       color: 'white',
       alignSelf: 'flex-end',
-      padding: 15
+      padding: 13
     },
     high_five_back: {
       alignSelf: 'flex-start',
