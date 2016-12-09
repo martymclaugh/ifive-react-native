@@ -8,9 +8,8 @@ import {
   AsyncStorage,
   Image
 } from 'react-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-
 import Button from '../components/Button';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
@@ -18,8 +17,8 @@ import Login from './Login';
 import styles from '../styles/common-styles.js';
 import Contacts from './Contacts';
 import Given from './Given';
-
-
+import GivenReceivedButton from '../components/GivenReceivedButton';
+import Received from './Received';
 
 export default class Account extends Component {
 
@@ -88,17 +87,16 @@ export default class Account extends Component {
               <View style={styles.account_container}>
                 <Text style={styles.account_name}>{this.state.first_name} {this.state.last_name}</Text>
                 <View style={styles.account_stats}>
-                <Text style={styles.account_info}>
-                  <Icon name="hand-paper-o" size={20} color="black" />  Given: {this.state.high_fives_given.length}
-                  </Text>
-                  <Button
+                  <GivenReceivedButton
+                    style={styles.account_info}
                     text="Given"
-                    onpress={this.goToGiven.bind(this)}
-                    button_styles={styles.transparent_button}
-                    button_text_styles={styles.transparent_button_text} />
-                  <Text style={styles.account_info}>
-                  <Icon name="hand-paper-o" size={20} color="black" />  Received: {this.state.high_fives_received.length}
-                  </Text>
+                    number={this.state.high_fives_given.length}
+                    onpress={this.goToGiven.bind(this)}/>
+                  <GivenReceivedButton
+                    style={styles.account_info}
+                    text="Received"
+                    number={this.state.high_fives_received.length}
+                    onpress={this.goToReceived.bind(this)}/>
                 </View>
                 <Text style={styles.account_info}>{this.state.email}</Text>
                 <Text style={styles.account_info}>{this.state.phone_number}</Text>
@@ -126,12 +124,28 @@ export default class Account extends Component {
     });
   }
   goToGiven(){
-    this.setState({
-      loaded:false
-    })
-    this.props.navigator.push({
-      component: Given
-    });
+    if (this.state.high_fives_given.length > 0){
+      this.setState({
+        loaded:false
+      })
+      this.props.navigator.push({
+        component: Given
+      });
+    } else {
+      alert('You have not sent any Fives yet.')
+    }
+  }
+  goToReceived(){
+    if (this.state.high_fives_received.length > 0){
+      this.setState({
+        loaded:false
+      })
+      this.props.navigator.push({
+        component: Received
+      });
+    } else {
+      alert('You have not received any Fives yet.')
+    }
   }
   logout(){
     this.setState({
