@@ -9,6 +9,8 @@ import Header from '../components/Header.js';
 import HighFiveItem from '../components/HighFiveItem';
 import HighFiveList from '../components/HighFiveList';
 import Loading from '../components/Loading';
+import Button from '../components/Button';
+import Account from './Account';
 
 
 export default class Received extends Component {
@@ -32,6 +34,14 @@ export default class Received extends Component {
       loaded: true
     })
   }
+  goToAccount(){
+    this.setState({
+      loaded: false
+    })
+    this.props.navigator.push({
+      component: Account
+    })
+  }
   render(){
     if (!this.state.loaded){
       return (
@@ -46,6 +56,12 @@ export default class Received extends Component {
     return (
       <ScrollView style={styles.container}>
         <Header text='Fives Received' />
+        <Button
+          text="Back"
+          style={styles.high_five_back}
+          onpress={this.goToAccount.bind(this)}
+          button_styles={styles.transparent_button}
+          button_text_styles={styles.transparent_button_text} />
         <HighFiveList list={this.state.given} />
       </ScrollView>
     );

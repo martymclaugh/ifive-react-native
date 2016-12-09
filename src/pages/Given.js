@@ -34,6 +34,9 @@ export default class Given extends Component {
     })
   }
   goToAccount(){
+    this.setState({
+      loaded: false
+    })
     this.props.navigator.push({
       component: Account
     })
