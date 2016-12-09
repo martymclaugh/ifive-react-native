@@ -89,7 +89,7 @@ export default class VerifyPhone extends Component {
     this.setState({
       loaded: false
     });
-    fetch('https://ifive.herokuapp.com/phone_numbers/' +  this.state.phone_number, {
+    fetch('http://localhost:3000/phone_numbers/' +  this.state.phone_number, {
       method: 'PUT',
       headers: {
         'Authorization': ':',

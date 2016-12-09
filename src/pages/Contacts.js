@@ -33,15 +33,11 @@ export default class Contacts extends Component {
 
 
   componentWillMount(){
-    Friends.getAll((err, friends) => {
-      if(err && err.type === 'permissionDenied'){
-        alert('If you want to send High Fives we need your contacts!')
-      } else {
-        this.setState({
-          loaded:true,
-          contacts: friends
-        })
-      }
+    AsyncStorage.getItem('contacts').then((data) => {
+      this.setState({
+        contacts: JSON.parse(data),
+        loaded: true
+      })
     })
   }
   render(){

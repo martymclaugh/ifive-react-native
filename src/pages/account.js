@@ -17,6 +17,8 @@ import Loading from '../components/Loading';
 import Login from './Login';
 import styles from '../styles/common-styles.js';
 import Contacts from './Contacts';
+var Friends = require('react-native-contacts');
+
 
 export default class Account extends Component {
 
@@ -34,8 +36,15 @@ export default class Account extends Component {
 
 
   componentWillMount(){
+    Friends.getAll((err, friends) => {
+      if(err && err.type === 'permissionDenied'){
+        alert('If you want to send High Fives we need your contacts!')
+      } else {
+        AsyncStorage.setItem('contacts', JSON.stringify(friends))
+      }
+    })
     AsyncStorage.multiGet(['token', 'userId', 'phone_number']).then( (data) => {
-      fetch('https://ifive.herokuapp.com/users/' + data[1][1], {
+      fetch('http://localhost:3000/users/' + data[1][1], {
         method: 'GET',
         headers: {
           'Authorization': data[0][1],

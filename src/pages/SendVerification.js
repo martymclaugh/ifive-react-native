@@ -74,7 +74,7 @@ export default class SendVerification extends Component {
     });
     AsyncStorage.setItem('phone_number', this.state.phone_number)
     AsyncStorage.multiGet(['token', 'userId']).then( (data) => {
-      fetch('https://ifive.herokuapp.com/phone_numbers', {
+      fetch('http://localhost:3000/phone_numbers', {
         method: 'POST',
         headers: {
           'Authorization': data[0][1],
