@@ -57,31 +57,35 @@ export default class Contacts extends Component {
     }
     return (
       <ScrollView style={styles.container}>
-      <Header text="Contacts" loaded={this.state.loaded} />
-      <View style={styles.body}>
-        <Button
-          text="< Account"
-          onpress={this.goToAccount.bind(this)}
-          button_styles={styles.transparent_button}
-          button_text_styles={styles.transparent_button_text} />
-          {
-            this.state.contacts.map( (contact, i) => {
-            return (
-            <ContactItem
-              first_name={contact.givenName}
-              last_name={contact.familyName}
-              phone_number={contact.phoneNumbers[0].number}
-              onpress={() => this.sendHighFive(contact)}/>
-            )
-          })
-        }
+        <Header text="Contacts" loaded={this.state.loaded} />
+        <View style={styles.body}>
+          <Button
+            text="< Account"
+            onpress={this.goToAccount.bind(this)}
+            button_styles={styles.transparent_button}
+            button_text_styles={styles.transparent_button_text} />
+            {
+              this.state.contacts.map( (contact, i) => {
+                console.log(contact);
+                if (contact.phoneNumbers[0] !== undefined){
+                  return (
+                    <ContactItem
+                    key={i}
+                    first_name={contact.givenName}
+                    last_name={contact.familyName}
+                    phone_number={contact.phoneNumbers[0].number}
+                    onpress={() => this.sendHighFive(contact)}/>
+                  )
+                }
+            })
+          }
         </View>
       </ScrollView>
     );
   }
   sendHighFive(contact){
+    console.log('PRESSED');
     if(contact.phoneNumbers.length > 1){
-      console.log(contact.phoneNumbers);
       contact.phoneNumbers.map( (number) => {
         if (number.label === 'mobile'){
           this.storeNumber(number.number, contact.givenName + ' ' + contact.familyName)
