@@ -110,7 +110,8 @@ module.exports = StyleSheet.create({
       padding: 20
     },
     account_info: {
-      fontFamily: 'GeezaPro-Bold'
+      fontFamily: 'GeezaPro-Bold',
+      padding: 10
     },
     account_stats: {
       alignItems: 'center',
