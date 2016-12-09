@@ -82,7 +82,7 @@ export default class Contacts extends Component {
     if(contact.phoneNumbers.length > 1){
       contact.phoneNumbers.map( (number) => {
         if (number.label === 'mobile'){
-          this.storeNumber(number.number, contact.givenName)
+          this.storeNumber(number.number, contact.givenName + contact.familyName)
           this.goToHighFive()
         }
       })

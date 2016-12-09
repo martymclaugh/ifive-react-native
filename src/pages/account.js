@@ -17,6 +17,8 @@ import Loading from '../components/Loading';
 import Login from './Login';
 import styles from '../styles/common-styles.js';
 import Contacts from './Contacts';
+import Given from './Given';
+
 
 
 export default class Account extends Component {
@@ -56,9 +58,12 @@ export default class Account extends Component {
               high_fives_given: data[2],
               high_fives_received: data[3]
             })
+            AsyncStorage.multiSet([
+              ['given', JSON.stringify(data[2])],
+              ['received', JSON.stringify(data[3])]
+            ])
           })
         } else {
-          console.log(response.status);
           alert('Login Failed. Please try again.')
         }
       })
@@ -84,10 +89,15 @@ export default class Account extends Component {
                 <Text style={styles.account_name}>{this.state.first_name} {this.state.last_name}</Text>
                 <View style={styles.account_stats}>
                 <Text style={styles.account_info}>
-                  <Icon name="hand-paper-o" size={20} color="black" />  Given: {this.state.high_fives_given}
+                  <Icon name="hand-paper-o" size={20} color="black" />  Given: {this.state.high_fives_given.length}
                   </Text>
+                  <Button
+                    text="Given"
+                    onpress={this.goToGiven.bind(this)}
+                    button_styles={styles.transparent_button}
+                    button_text_styles={styles.transparent_button_text} />
                   <Text style={styles.account_info}>
-                  <Icon name="hand-paper-o" size={20} color="black" />  Received: {this.state.high_fives_received}
+                  <Icon name="hand-paper-o" size={20} color="black" />  Received: {this.state.high_fives_received.length}
                   </Text>
                 </View>
                 <Text style={styles.account_info}>{this.state.email}</Text>
@@ -113,6 +123,14 @@ export default class Account extends Component {
     })
     this.props.navigator.push({
       component: Contacts
+    });
+  }
+  goToGiven(){
+    this.setState({
+      loaded:false
+    })
+    this.props.navigator.push({
+      component: Given
     });
   }
   logout(){
