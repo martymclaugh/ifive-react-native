@@ -81,7 +81,11 @@ export default class Signup extends Component {
       loaded: true
     });
   }
-
+  componentDidMount(){
+    this.setState({
+      loaded: true
+    })
+  }
 
   render() {
     if (!this.state.loaded){
@@ -100,7 +104,7 @@ export default class Signup extends Component {
         <View style={styles.body}>
           <TextField
             label={'First Name'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({first_name: text})}
@@ -108,7 +112,7 @@ export default class Signup extends Component {
           />
           <TextField
             label={'Last Name'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({last_name: text})}
@@ -116,7 +120,7 @@ export default class Signup extends Component {
           />
           <TextField
             label={'Email'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({email: text})}
@@ -124,7 +128,7 @@ export default class Signup extends Component {
           />
           <TextField
             label={'Password'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({password: text})}
@@ -133,7 +137,7 @@ export default class Signup extends Component {
           />
           <TextField
             label={'Password Confirmation'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({password_confirmation: text})}

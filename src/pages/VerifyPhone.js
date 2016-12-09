@@ -63,7 +63,7 @@ export default class VerifyPhone extends Component {
         <View style={styles.body}>
           <TextField
             label={'PIN Number'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({code: text})}

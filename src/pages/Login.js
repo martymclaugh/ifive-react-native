@@ -109,7 +109,7 @@ export default class Login extends Component {
         <View style={styles.body}>
           <TextField
             label={'Phone Number'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({phone_number: text})}
@@ -119,7 +119,7 @@ export default class Login extends Component {
           />
           <TextField
             label={'Password'}
-            highlightColor={'#6699CC'}
+            highlightColor={'#1abc9c'}
             dense={true}
             style={styles.textinput}
             onChangeText={(text) => this.setState({password: text})}
