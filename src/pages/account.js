@@ -35,7 +35,7 @@ export default class Account extends Component {
 
   componentWillMount(){
     AsyncStorage.multiGet(['token', 'userId', 'phone_number']).then( (data) => {
-      fetch('http://localhost:3000/users/' + data[1][1], {
+      fetch('https://ifive.herokuapp.com/users/' + data[1][1], {
         method: 'GET',
         headers: {
           'Authorization': data[0][1],
@@ -92,10 +92,10 @@ export default class Account extends Component {
                 <Text style={styles.account_info}>{this.state.phone_number}</Text>
               </View>
               <Button
-              text="Send High Fives"
-              onpress={this.goToContacts.bind(this)}
-              button_styles={styles.transparent_button}
-              button_text_styles={styles.transparent_button_text} />
+                text="Send High Fives"
+                onpress={this.goToContacts.bind(this)}
+                button_styles={styles.transparent_button}
+                button_text_styles={styles.transparent_button_text} />
               <Button
                   text="Logout"
                   onpress={this.logout.bind(this)}
