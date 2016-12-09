@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   Text,
-  TextInput,
-  StyleSheet,
   View,
-  AsyncStorage,
-  Image
+  AsyncStorage
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';

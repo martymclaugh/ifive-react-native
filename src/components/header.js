@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  ActivityIndicator,
   Text,
-  View,
-  StyleSheet
+  View
 } from 'react-native';
 import styles from '../styles/common-styles.js';
 import Loading from './Loading'
@@ -23,5 +20,3 @@ export default class Header extends Component {
     );
   }
 }
-
-AppRegistry.registerComponent('header', () => header);

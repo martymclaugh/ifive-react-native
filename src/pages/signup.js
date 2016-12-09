@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  Text,
-  TextInput,
   AsyncStorage,
   View
 } from 'react-native';
@@ -163,5 +160,3 @@ export default class Signup extends Component {
     )
   }
 }
-
-AppRegistry.registerComponent('Signup', () => Signup);

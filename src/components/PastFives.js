@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {
-  ActivityIndicator,
-  View
-} from 'react-native';
+import { View } from 'react-native';
 import styles from '../styles/common-styles.js';
 import Header from './Header.js'
 

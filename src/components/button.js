@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   TouchableHighlight,
   Text,
   View
@@ -20,5 +19,3 @@ export default class Button extends Component {
     );
   }
 }
-
-AppRegistry.registerComponent('button', () => button);

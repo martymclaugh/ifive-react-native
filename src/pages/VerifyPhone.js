@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  Text,
-  TextInput,
-  StyleSheet,
   View,
   AsyncStorage
 } from 'react-native';
@@ -120,5 +116,3 @@ export default class VerifyPhone extends Component {
     })
   }
 }
-
-AppRegistry.registerComponent('VerifyPhone', () => VerifyPhone);
