@@ -10,6 +10,7 @@ let CIRCLE_RADIUS = 36;
 let Window = Dimensions.get('window');
 
 let PRIMARY_COLOR = '#007e9e'
+let SECONDARY_COLOR = '#1abc9c'
 
 module.exports = StyleSheet.create({
     // styles
@@ -47,12 +48,16 @@ module.exports = StyleSheet.create({
     contact_item: {
       flex: 1,
       padding: 15,
-      backgroundColor: '#282828',
+      width: Window.width - 20,
+      borderBottomWidth: 1,
+      borderBottomColor: '#d6d6d6',
+      flexDirection: 'row',
       margin: 10,
-      alignItems: 'center',
+      alignSelf: 'center',
     },
     contact_text: {
-      color: '#FFFFFF'
+      flex: 3,
+      color: 'black'
     },
     body: {
       flex: 9,
@@ -109,5 +114,9 @@ module.exports = StyleSheet.create({
       fontFamily: 'GeezaPro-Bold',
       color: 'white',
       fontSize: 18
+    },
+    high_five_button: {
+      flex: 1,
+      justifyContent: 'flex-end'
     }
 });
