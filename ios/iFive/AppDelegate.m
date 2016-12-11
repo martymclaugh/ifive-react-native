@@ -11,6 +11,7 @@
 
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
+#import "RCTPushNotificationManager.h"
 
 @implementation AppDelegate
 
@@ -33,5 +34,24 @@
   [self.window makeKeyAndVisible];
   return YES;
 }
-
-@end
+// Required to register for notifications
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings { [RCTPushNotificationManager didRegisterUserNotificationSettings:notificationSettings]; }
+// Required for the register event.
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken { [RCTPushNotificationManager didRegisterForRemoteNotificationsWithDeviceToken:deviceToken]; }
+// Required for the notification event.
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+  application.applicationIconBadgeNumber = 0;
+  //self.textView.text = [userInfo description];
+  // We can determine whether an application is launched as a result of the user tapping the action
+  // button or whether the notification was delivered to the already-running application by examining
+  // the application state.
+  
+  if (application.applicationState == UIApplicationStateActive)
+  {
+    // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"iFive" message:[NSString stringWithFormat:@"\n%@",[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]]delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alertView show];
+  }
+}@end

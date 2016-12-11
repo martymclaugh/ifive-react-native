@@ -10,6 +10,7 @@ import {
   Navigator,
   AsyncStorage,
   Text,
+  PushNotificationIOS,
   View
 } from 'react-native';
 
@@ -28,6 +29,14 @@ class iFive extends Component {
     };
   }
   componentWillMount(){
+    PushNotificationIOS.requestPermissions();
+    PushNotificationIOS.addEventListener('register', function(device_token){
+     alert('You are registered and the device token is: ' + device_token)
+     AsyncStorage.setItem('device_token', device_token)
+    });
+    PushNotificationIOS.addEventListener("notification", function(notification){
+     alert('You have received a new notification!' + notification);
+    });
     AsyncStorage.getItem('token').then((token) => {
       console.log(token);
       let component = {component: Signup};

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   AsyncStorage,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 
 import Button from '../components/Button';
@@ -11,18 +12,18 @@ import Login from './Login'
 import styles from '../styles/common-styles';
 import Loading from '../components/Loading';
 import TextField from 'react-native-md-textinput';
-
+var Friends = require('react-native-contacts');
 
 export default class Signup extends Component {
   constructor(props){
     super(props);
 
     this.state = {
-      phone_number: '',
       password: '',
       first_name: '',
       last_name: '',
       email: '',
+      device_token: '',
       loaded: false
     };
   }
@@ -39,17 +40,17 @@ export default class Signup extends Component {
     this.setState({
       loaded: false
     })
-    fetch('http://localhost:3000/users', {
+    fetch('http://192.168.3.15:3000/users', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        phone_number: this.state.phone_number,
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         email: this.state.email,
+        device_token: this.state.device_token,
         password: this.state.password,
         password_confirmation: this.state.password_confirmation
       })
@@ -81,6 +82,20 @@ export default class Signup extends Component {
       loaded: true
     });
   }
+  componentWillMount(){
+    AsyncStorage.getItem('device_token').then( (data) => {
+      this.setState({
+        device_token: data
+      })
+    })
+    Friends.getAll((err, friends) => {
+      if(err && err.type === 'permissionDenied'){
+        alert('If you want to send Fives we need your contacts!')
+      } else {
+        AsyncStorage.setItem('contacts', JSON.stringify(friends))
+      }
+    })
+  }
   componentDidMount(){
     this.setState({
       loaded: true
@@ -99,7 +114,7 @@ export default class Signup extends Component {
       )
     }
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Header text="Signup" loaded={this.state.loaded} />
         <View style={styles.body}>
           <TextField
@@ -156,7 +171,7 @@ export default class Signup extends Component {
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
