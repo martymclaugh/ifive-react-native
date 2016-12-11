@@ -20,18 +20,14 @@ export default class HighFiveItem extends Component {
        } else if (hours < 24) {
            return hours + " hours ago";
        } else {
-           return false
+           return days + " days ago";
        }
    }
   parseDateTime(dateInput){
     let date = new Date(dateInput)
     let now = new Date()
     let milliseconds = Math.floor(Math.abs(date - now))
-    if (this.timeLapse(milliseconds != false)){
-      return this.timeLapse(milliseconds)
-    } else {
-      return date.toDateString()
-    }
+    return this.timeLapse(milliseconds)
   }
   render(){
     return (
