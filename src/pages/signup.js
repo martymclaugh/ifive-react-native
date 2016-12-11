@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   AsyncStorage,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 
 import Button from '../components/Button';
@@ -113,7 +114,7 @@ export default class Signup extends Component {
       )
     }
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Header text="Signup" loaded={this.state.loaded} />
         <View style={styles.body}>
           <TextField
@@ -170,7 +171,7 @@ export default class Signup extends Component {
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
