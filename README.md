@@ -2,7 +2,8 @@
 
 Currently waiting release to the iTunes Store.
 
-iFives is an iOS app built in React Native with an [API](https://github,com/martymclaugh/ifive-api) built in Ruby on Rails.
+iFives is an iOS app built in React Native with an [API](https://github.com/martymclaugh/ifive-api) built in Ruby on Rails.
+<img align="center" src="http://i.imgur.com/5DET13w.jpg" width="300px">
 ## Tech Stack
 * React Native(React, JSX)
 * Javascript
@@ -30,4 +31,3 @@ Using native Push Notifications, if you receive a high five you will get an aler
 <img align="center" src="http://i.imgur.com/4zWupu4.jpg" width="300px">
 
 ## * Native Push Notifications when receiving a five.
-<img align="center" src="http://i.imgur.com/5DET13w.jpg" width="300px">
