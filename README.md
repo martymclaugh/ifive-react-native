@@ -10,19 +10,19 @@ Using native Push Notifications, if you receive a high five you will get an aler
 
 #Other features include:
 ## * Beautiful design with Google Material Input forms
-![alt tag](http://i.imgur.com/REpT1Qh.jpg)
+![alt tag](http://i.imgur.com/REpT1Qh.jpg =200px)
 
 ## * Phone Verification System using Twilio
-![alt tag](http://i.imgur.com/wzWLkUz.jpg)
+![alt tag](http://i.imgur.com/wzWLkUz.jpg =200px)
 
 ## * Stats on Profile
-![alt tag](http://i.imgur.com/uwBsK98.jpg)
+![alt tag](http://i.imgur.com/uwBsK98.jpg =200px)
 
 ## * Visualization of all Fives sent and received.
-![alt tag](http://i.imgur.com/iwG4Abn.jpg)
+![alt tag](http://i.imgur.com/iwG4Abn.jpg =200px)
 
 ## * Drag and drop hands for the satisfaction of fiving.
-![alt tag](http://i.imgur.com/4zWupu4.jpg)
+![alt tag](http://i.imgur.com/4zWupu4.jpg =200px)
 
 ## * Native Push Notifications when receiving a five.
-![alt tag](http://i.imgur.com/5DET13w.jpg)
+![alt tag](http://i.imgur.com/5DET13w.jpg =200px)
