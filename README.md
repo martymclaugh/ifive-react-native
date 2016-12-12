@@ -14,6 +14,7 @@ iFives solves the problem of the unsatisfactory 'air five'. Users can send high 
 Using native Push Notifications, if you receive a high five you will get an alert even if the app is closed. If a user doesn't have the app, Twilio sends the high five via sms, and invites you to join the app.
 
 #Other features include:
+<div align="center">
 ## * Beautiful design with Google Material Input forms
 <img src="http://i.imgur.com/REpT1Qh.jpg" width="200px">
 
@@ -31,3 +32,4 @@ Using native Push Notifications, if you receive a high five you will get an aler
 
 ## * Native Push Notifications when receiving a five.
 <img src="http://i.imgur.com/5DET13w.jpg" width="200px">
+</div>
