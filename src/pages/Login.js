@@ -45,7 +45,7 @@ export default class Login extends Component {
     this.setState({
       loaded: false
     });
-    fetch('http://192.168.3.15:3000/v1/login', {
+    fetch('https://ifive.herokuapp.com/v1/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

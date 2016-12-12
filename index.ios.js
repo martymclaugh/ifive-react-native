@@ -64,7 +64,7 @@ class iFive extends Component {
     }else{
       return (
         <View style={styles.container}>
-          <Header text="iFive" loaded={this.state.loaded} />
+          <Header text="iFives" loaded={this.state.loaded} />
           <View style={styles.body}></View>
         </View>
       );

@@ -38,7 +38,7 @@ export default class Account extends Component {
 
   componentWillMount(){
     AsyncStorage.multiGet(['token', 'userId', 'phone_number']).then( (data) => {
-      fetch('http://192.168.3.15:3000/users/' + data[1][1], {
+      fetch('https://ifive.herokuapp.com/users/' + data[1][1], {
         method: 'GET',
         headers: {
           'Authorization': data[0][1],

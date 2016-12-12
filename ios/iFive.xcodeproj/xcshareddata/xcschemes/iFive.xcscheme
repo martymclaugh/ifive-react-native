@@ -110,6 +110,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "iFives"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
