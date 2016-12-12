@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
+  RefreshControl,
+  ScrollView,
   AsyncStorage
 } from 'react-native';
 
@@ -28,6 +30,7 @@ export default class Account extends Component {
       email: '',
       high_fives_given: [],
       high_fives_received: [],
+      isRefreshing: false,
       loaded: false
     }
   }
@@ -66,6 +69,15 @@ export default class Account extends Component {
       })
     })
   }
+  _onRefresh = () => {
+    this.setState({isRefreshing: true});
+    setTimeout(() => {
+      this.componentWillMount()
+      this.setState({
+        isRefreshing: false,
+      });
+    }, 5000);
+  }
   render(){
     if (!this.state.loaded){
       return (
@@ -81,6 +93,13 @@ export default class Account extends Component {
     return (
       <View style={styles.container}>
       <Header text="Account" loaded={this.state.loaded} />
+        <ScrollView refreshControl={
+          <RefreshControl
+          refreshing={this.state.isRefreshing}
+          onRefresh={this._onRefresh}
+          title="Loading..."
+          />
+        }>
             <View style={styles.body}>
               <View style={styles.account_container}>
                 <Text style={styles.account_name}>{this.state.first_name} {this.state.last_name}</Text>
@@ -110,6 +129,7 @@ export default class Account extends Component {
                   button_styles={styles.primary_button}
                   button_text_styles={styles.primary_button_text} />
             </View>
+        </ScrollView>
       </View>
     );
   }
