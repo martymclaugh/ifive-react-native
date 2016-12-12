@@ -25,6 +25,7 @@ export default class Login extends Component {
       phone_number: '',
       password: '',
       badLogin: null,
+      device_token: '',
       loaded: true
     }
   }
@@ -52,6 +53,7 @@ export default class Login extends Component {
       },
       body: JSON.stringify({
         phone_number: this.state.phone_number,
+        device_token: this.state.device_token,
         password: this.state.password
       })
     })
@@ -98,7 +100,13 @@ export default class Login extends Component {
       component: Signup
     });
   }
-
+  componentWillMount(){
+    AsyncStorage.getItem('device_token').then( (data) => {
+      this.setState({
+        device_token: data
+      })
+    })
+  }
   render(){
     if (!this.state.loaded){
       return (

@@ -5,6 +5,7 @@ import {
   ScrollView
 } from 'react-native';
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Button from '../components/Button';
 import Header from '../components/Header';
 import SendVerification from './SendVerification';
@@ -114,7 +115,7 @@ export default class Signup extends Component {
       )
     }
     return (
-      <ScrollView style={styles.container}>
+      <KeyboardAwareScrollView style={styles.container}>
         <Header text="Signup" loaded={this.state.loaded} />
         <View style={styles.body}>
           <TextField
@@ -171,7 +172,7 @@ export default class Signup extends Component {
             button_styles={styles.transparent_button}
             button_text_styles={styles.transparent_button_text} />
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     )
   }
 }
