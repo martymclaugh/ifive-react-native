@@ -14,22 +14,20 @@ iFives solves the problem of the unsatisfactory 'air five'. Users can send high 
 Using native Push Notifications, if you receive a high five you will get an alert even if the app is closed. If a user doesn't have the app, Twilio sends the high five via sms, and invites you to join the app.
 
 #Other features include:
-<div align="center">
 ## * Beautiful design with Google Material Input forms
-<img src="http://i.imgur.com/REpT1Qh.jpg" width="200px">
+<img align="center" src="http://i.imgur.com/REpT1Qh.jpg" width="200px">
 
 ## * Phone Verification System using Twilio
-<img src="http://i.imgur.com/wzWLkUz.jpg" width="200px">
+<img align="center" src="http://i.imgur.com/wzWLkUz.jpg" width="200px">
 
 ## * Stats on Profile
-<img src="http://i.imgur.com/uwBsK98.jpg" width="200px">
+<img align="center" src="http://i.imgur.com/uwBsK98.jpg" width="200px">
 
 ## * Visualization of all Fives sent and received.
-<img src="http://i.imgur.com/iwG4Abn.jpg" width="200px">
+<img align="center" src="http://i.imgur.com/iwG4Abn.jpg" width="200px">
 
 ## * Drag and drop hands for the satisfaction of fiving.
-<img src="http://i.imgur.com/4zWupu4.jpg" width="200px">
+<img align="center" src="http://i.imgur.com/4zWupu4.jpg" width="200px">
 
 ## * Native Push Notifications when receiving a five.
-<img src="http://i.imgur.com/5DET13w.jpg" width="200px">
-</div>
+<img align="center" src="http://i.imgur.com/5DET13w.jpg" width="200px">
