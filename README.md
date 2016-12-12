@@ -1,9 +1,12 @@
 #iFives
 
-Currently waiting release to the iTunes Store.
+### Currently waiting release to the iTunes Store.
 
-iFives is an iOS app built in React Native with an [API](https://github.com/martymclaugh/ifive-api) built in Ruby on Rails.
+### iFives is an iOS app built in React Native with an [API](https://github.com/martymclaugh/ifive-api) built in Ruby on Rails.
+
 <img align="center" src="http://i.imgur.com/5DET13w.jpg" width="300px">
+
+
 ## Tech Stack
 * React Native(React, JSX)
 * Javascript
