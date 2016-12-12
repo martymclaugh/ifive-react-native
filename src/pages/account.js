@@ -46,7 +46,6 @@ export default class Account extends Component {
           'Content-Type': 'application/json'
         }
       }).then( (response) => {
-        console.log(response);
         if (response.status >= 200 && response.status < 300) {
           response.json().then((data) => {
             this.setState({
@@ -65,6 +64,9 @@ export default class Account extends Component {
           })
         } else {
           alert('Login Failed. Please try again.')
+          this.props.navigator.push({
+            component: Login
+          });
         }
       })
     })
