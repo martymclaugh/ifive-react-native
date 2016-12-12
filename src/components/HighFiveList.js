@@ -8,7 +8,6 @@ export default class HighFiveList extends Component {
     return (
       <View style={styles.container}>
           {this.props.list.map( (highFive) => {
-            console.log(this.props.type);
             if (this.props.type === 'giver'){
               return(
                 <HighFiveItem

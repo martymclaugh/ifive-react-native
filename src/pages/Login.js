@@ -63,7 +63,6 @@ export default class Login extends Component {
       })
       if (response.status >= 200 && response.status < 300) {
         response.json().then((data) => {
-          alert('You have logged in!')
           AsyncStorage.multiSet([
             ['token', data[0].access_token],
             ['userId', data[0].id.toString()],
