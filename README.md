@@ -4,6 +4,11 @@
 
 ### iFives is an iOS app built in React Native with an [API](https://github.com/martymclaugh/ifive-api) built in Ruby on Rails.
 
+### Note: If you clone this repo, you will need to run the build on an actual iOS device due to the fact that the simulator does not have a device token for push notifications. You also will not need to clone the API as the react-native app points to the hosted API. Until the actual iTunes release, all text messages and push notifications will be directed to the device running the application.
+
+Please see: http://apple.co/2hwpToY on how to run iFives on an iOS Device.
+
+
 <img align="center" src="http://i.imgur.com/5DET13w.jpg" width="300px">
 
 
