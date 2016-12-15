@@ -2,6 +2,22 @@
 
 ### Currently waiting release to the iTunes Store.
 
+
+iFives. The easiest way to send a high five.
+
+Your friend just told an awesome joke? Give them a Five.
+Your child got an A in class? Give them a Five.
+It's your turn to buy a round of drinks? Give a round of Fives instead.
+You destroyed that presentation at work? Give yourself a Five.
+You can't pay your movers? Give them some Fives.
+You can't reach across the table to high five? Give them a Five.
+Someone just became the worlds best player in a video game? Give them a Five.
+Someone said 'Slap me some skin?' Slap them some screen instead!
+Just got a Five? Give them a Five.
+
+With up high and down low, there's no being too slow if you have iFives!
+
+
 ### iFives is an iOS app built in React Native with an [API](https://github.com/martymclaugh/ifive-api) built in Ruby on Rails.
 
 ### Note: If you clone this repo, you will need to run the build on an actual iOS device due to the fact that the simulator does not have a device token for push notifications. You also will not need to clone the API as the react-native app points to the hosted API. Until the actual iTunes release, all text messages and push notifications will be directed to the device running the application.
