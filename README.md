@@ -5,15 +5,15 @@
 
 iFives. The easiest way to send a high five.
 
-Your friend just told an awesome joke? Give them a Five.
-Your child got an A in class? Give them a Five.
-It's your turn to buy a round of drinks? Give a round of Fives instead.
-You destroyed that presentation at work? Give yourself a Five.
-You can't pay your movers? Give them some Fives.
-You can't reach across the table to high five? Give them a Five.
-Someone just became the worlds best player in a video game? Give them a Five.
-Someone said 'Slap me some skin?' Slap them some screen instead!
-Just got a Five? Give them a Five.
+* Your friend just told an awesome joke? Give them a Five.
+* Your child got an A in class? Give them a Five.
+* It's your turn to buy a round of drinks? Give a round of Fives instead.
+* You destroyed that presentation at work? Give yourself a Five.
+* You can't pay your movers? Give them some Fives.
+* You can't reach across the table to high five? Give them a Five.
+* Someone just became the worlds best player in a video game? Give them a Five.
+* Someone said 'Slap me some skin?' Slap them some screen instead!
+* Just got a Five? Give them a Five.
 
 With up high and down low, there's no being too slow if you have iFives!
 
