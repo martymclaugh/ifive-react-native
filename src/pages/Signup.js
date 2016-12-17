@@ -84,13 +84,6 @@ export default class Signup extends Component {
     });
   }
   componentWillMount(){
-    PushNotificationIOS.requestPermissions();
-    PushNotificationIOS.addEventListener('register', function(device_token){
-     AsyncStorage.setItem('device_token', device_token)
-     this.setState({
-       device_token: device_token
-     })
-    });
     PushNotificationIOS.addEventListener("notification", function(notification){
     });
     Friends.getAll((err, friends) => {
@@ -102,9 +95,14 @@ export default class Signup extends Component {
     })
   }
   componentDidMount(){
-    this.setState({
-      loaded: true
-    })
+    PushNotificationIOS.requestPermissions();
+    PushNotificationIOS.addEventListener('register', function(device_token){
+      AsyncStorage.setItem('device_token', device_token)
+      this.setState({
+        device_token: device_token,
+        loaded: true
+      })
+    });
   }
 
   render() {
