@@ -929,7 +929,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = iFive/iFive.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Martin McLaughlin (RRBXW55URT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Martin McLaughlin (RRBXW55URT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Martin McLaughlin (SN48C7LRTJ)";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = SN48C7LRTJ;
@@ -949,8 +949,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.martymclaugh.iFives.iOS;
 				PRODUCT_NAME = iFive;
-				PROVISIONING_PROFILE = "d9493cf3-8867-43e8-8a4f-7ce35bf84cb7";
-				PROVISIONING_PROFILE_SPECIFIER = "iFive Devel";
+				PROVISIONING_PROFILE = "071983ff-2053-459a-b281-e6a483234be2";
+				PROVISIONING_PROFILE_SPECIFIER = "Production Profile";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -963,7 +963,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = iFive/iFive.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Martin McLaughlin (RRBXW55URT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Martin McLaughlin (RRBXW55URT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Martin McLaughlin (SN48C7LRTJ)";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SN48C7LRTJ;
 				HEADER_SEARCH_PATHS = (
@@ -982,8 +982,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.martymclaugh.iFives.iOS;
 				PRODUCT_NAME = iFive;
-				PROVISIONING_PROFILE = "d9493cf3-8867-43e8-8a4f-7ce35bf84cb7";
-				PROVISIONING_PROFILE_SPECIFIER = "iFive Devel";
+				PROVISIONING_PROFILE = "071983ff-2053-459a-b281-e6a483234be2";
+				PROVISIONING_PROFILE_SPECIFIER = "Production Profile";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
