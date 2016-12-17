@@ -84,11 +84,15 @@ export default class Signup extends Component {
     });
   }
   componentWillMount(){
-    AsyncStorage.getItem('device_token').then( (data) => {
-      this.setState({
-        device_token: data
-      })
-    })
+    PushNotificationIOS.requestPermissions();
+    PushNotificationIOS.addEventListener('register', function(device_token){
+     AsyncStorage.setItem('device_token', device_token)
+     this.setState({
+       device_token: device_token
+     })
+    });
+    PushNotificationIOS.addEventListener("notification", function(notification){
+    });
     Friends.getAll((err, friends) => {
       if(err && err.type === 'permissionDenied'){
         alert('If you want to send Fives we need your contacts!')
