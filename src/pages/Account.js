@@ -93,7 +93,7 @@ export default class Account extends Component {
     }
 
     return (
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
       <Header text="Account" loaded={this.state.loaded} />
         <ScrollView refreshControl={
           <RefreshControl
