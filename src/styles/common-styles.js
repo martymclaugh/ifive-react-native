@@ -69,7 +69,6 @@ module.exports = StyleSheet.create({
     },
     // styles
     contact_item: {
-      flex: 1,
       padding: 15,
       width: Window.width - 20,
       borderBottomWidth: 1,
