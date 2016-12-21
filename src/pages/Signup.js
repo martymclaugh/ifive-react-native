@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   AsyncStorage,
   View,
-  ScrollView
+  ScrollView,
+  PushNotificationIOS
 } from 'react-native';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -13,6 +14,7 @@ import Login from './Login'
 import styles from '../styles/common-styles';
 import Loading from '../components/Loading';
 import TextField from 'react-native-md-textinput';
+import DeviceInfo from 'react-native-device-info'
 var Friends = require('react-native-contacts');
 
 export default class Signup extends Component {
@@ -27,6 +29,9 @@ export default class Signup extends Component {
       device_token: '',
       loaded: false
     };
+  }
+  isSimulator() {
+    return DeviceInfo.getModel()==="Simulator";
   }
   goToLogin(){
     this.setState({
@@ -84,8 +89,6 @@ export default class Signup extends Component {
     });
   }
   componentWillMount(){
-    PushNotificationIOS.addEventListener("notification", function(notification){
-    });
     Friends.getAll((err, friends) => {
       if(err && err.type === 'permissionDenied'){
         alert('If you want to send Fives we need your contacts!')
@@ -95,14 +98,22 @@ export default class Signup extends Component {
     })
   }
   componentDidMount(){
-    PushNotificationIOS.requestPermissions();
-    PushNotificationIOS.addEventListener('register', function(device_token){
-      AsyncStorage.setItem('device_token', device_token)
+    if (!this.isSimulator.bind(this)){
+      PushNotificationIOS.addEventListener("notification", function(notification){
+      });
+      PushNotificationIOS.requestPermissions();
+      PushNotificationIOS.addEventListener('register', function(device_token){
+        AsyncStorage.setItem('device_token', device_token)
+        this.setState({
+          device_token: device_token,
+          loaded: true
+        })
+      });
+    } else {
       this.setState({
-        device_token: device_token,
         loaded: true
       })
-    });
+    }
   }
 
   render() {
@@ -117,7 +128,7 @@ export default class Signup extends Component {
       )
     }
     return (
-      <KeyboardAwareScrollView style={styles.container}>
+      <KeyboardAwareScrollView style={styles.mainContainer}>
         <Header text="Signup" loaded={this.state.loaded} />
         <View style={styles.body}>
           <TextField
